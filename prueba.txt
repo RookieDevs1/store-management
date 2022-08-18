@@ -5,3 +5,5 @@ Commit hecho por hellen acosta
 commit hecho por ivan
 
 modificado por juan a las 10:17 :)
+----------
+Isaura Eckar --> Se Creo, y se modifico el archivo txt, cada integrante realizo su respectivo Commit.
