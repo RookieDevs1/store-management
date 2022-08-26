@@ -1,6 +1,8 @@
 package com.project.storemanagement.Controladores;
 
+
 public class Empleado {
+
     private String nombre;
     private String email;
     private String rol;
@@ -46,4 +48,5 @@ public class Empleado {
                 ", rol='" + rol + '\'' +
                 '}';
     }
+
 }
