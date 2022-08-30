@@ -2,11 +2,42 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+
     <title th:text="${titulo}">Empleado</title>
 
 </head>
 <body>
-<h1 th:text="${titulo}"></h1>
-<span>th:text="${Empleado.nombre}</span>
+<div class="container mt-4">
+    <a th:href="@{/new}" class="btn btn-primary">Nuevo</a>
+    <table class="table">
+
+        <thead>
+        <nav class="nav nav-pills nav-justified">
+            <a class="nav-link active" href="#">Active</a>
+            <a class="nav-link" href="#">Longer nav link</a>
+            <a class="nav-link" href="#">Link</a>
+            <a class="nav-link disabled" href="#">Disabled</a>
+        </nav>
+        </thead>
+        <tbody>
+        <tr th:each="empresa:${empresas}">
+            <td th:text="${empresa.id}">${empresa.id}</td>
+            <td th:text="${empresa.nombre}">${empresa.nombre}</td>
+            <td th:text="${empresa.documento}">${empresa.documento}</td>
+            <td th:text="${empresa.telefono}">${empresa.telefono}</td>
+            <td th:text="${empresa.direccion}">${empresa.direccion}</td>
+            <td>
+                <a th:href="@{/editar/}+${empresa.id}" class="btn btn-warning">Editar</a>
+                <a th:onclick="eliminar([[${empresa.id}]])" class="btn btn-danger">Eliminar</a>
+            </td>
+        </tr>
+
+        </tbody>
+    </table>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="funciones.js"></script>
 </body>
 </html>

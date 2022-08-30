@@ -1,40 +1,61 @@
 package com.project.storemanagement.Models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
+@Table(name = "empresa")
 public class Empresa {
     //Atributos
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id", nullable = false, unique = true)
     private long id;
+
+    @Column(name = "nombre", nullable = false, unique = true, length = 50)
     private String nombre;
 
-    @Column(name = "documento", unique = true)
+    @Column(name = "documento", nullable = false, unique = true, length = 50)
     private String documento;
-    private int telefono;
+
+    @Column(name = "telefono", length = 15)
+    private String telefono;
+
+    @Column(name = "direccion", nullable = false, length = 50)
     private String direccion;
 
-    @OneToMany
-    private Empleado empleado;
-    private Movimiento movimiento;
+    @OneToMany(mappedBy = "empleado", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JsonManagedReference
+    private List<Empleado> empleados = new ArrayList<>();
+
+    @OneToMany(mappedBy = "empresa", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JsonManagedReference
+    private List<Movimiento> movimientos = new ArrayList<>();
+
+    @Column(name = "createdAt")
     private Date updatedAt;
+
+    @Column(name = "updatedAt")
     private Date createdAt;
+
 
     //Constructor Vacio
     public Empresa() {
     }
     //Constructor con todos los atributos
 
-    public Empresa(long id, String nombre, String documento, int telefono, String direccion, Empleado empleado, Movimiento movimiento, Date updatedAt, Date createdAt) {
+    public Empresa(long id, String nombre, String documento, String telefono, String direccion, List<Empleado> empleados, List<Movimiento> movimientos, Date updatedAt, Date createdAt) {
         this.id = id;
         this.nombre = nombre;
         this.documento = documento;
         this.telefono = telefono;
         this.direccion = direccion;
-        this.empleado = empleado;
-        this.movimiento = movimiento;
+        this.empleados = empleados;
+        this.movimientos = movimientos;
         this.updatedAt = updatedAt;
         this.createdAt = createdAt;
     }
@@ -67,11 +88,11 @@ public class Empresa {
         this.documento = documento;
     }
 
-    public int getTelefono() {
+    public String getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(int telefono) {
+    public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
 
@@ -83,20 +104,20 @@ public class Empresa {
         this.direccion = direccion;
     }
 
-    public Empleado getEmpleado() {
-        return empleado;
+    public List<Empleado> getEmpleados() {
+        return empleados;
     }
 
-    public void setEmpleado(Empleado empleado) {
-        this.empleado = empleado;
+    public void setEmpleados(List<Empleado> empleados) {
+        this.empleados = empleados;
     }
 
-    public Movimiento getMovimiento() {
-        return movimiento;
+    public List<Movimiento> getMovimientos() {
+        return movimientos;
     }
 
-    public void setMovimiento(Movimiento movimiento) {
-        this.movimiento = movimiento;
+    public void setMovimientos(List<Movimiento> movimientos) {
+        this.movimientos = movimientos;
     }
 
     public Date getUpdatedAt() {
