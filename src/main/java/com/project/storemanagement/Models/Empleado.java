@@ -1,46 +1,68 @@
 package com.project.storemanagement.Models;
 
 
-import javax.persistence.*;
-import java.util.Date;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.hibernate.Transaction;
 
-@Table
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+
 @Entity
+@Table(name = "empleado")
 public class Empleado {
     // Declarar Variables
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id", nullable = false, unique = true)
     private long id;
     private String nombre;
 
-    @Column(name = "email", unique = true)
+
+    @Column(name = "email", nullable = false, unique = true, length = 50)
     private String email;
 
-
+    @OneToOne
+    @JoinColumn(name = "profile_id")
     private Profile profile;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "role")
     private Enum_RoleName role;
 
     @ManyToOne
+    @JoinColumn(name = "empresa_id")
     private Empresa empresa;
-    private Movimiento movimiento;
+
+    @OneToMany(mappedBy = "empleado", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JsonManagedReference
+    private List<Movimiento> Movimientos = new ArrayList<>();
+
+    @Column(name = "updatedAt")
     private Date updatedAt;
+    @Column(name = "createdAt")
     private Date createdAt;
+
 
     //Constructor vacio
     public Empleado() {
     }
+  //constuctor
 
-    public Empleado(long id, String nombre, String email, Date updatedAt, Date createdAt, Profile profile, Enum_RoleName role, Empresa empresa, Movimiento movimiento) {
+
+    public Empleado(long id, String nombre, String email, Profile profile, Enum_RoleName role, Empresa empresa, List<Movimiento> movimientos, Date updatedAt, Date createdAt) {
         this.id = id;
         this.nombre = nombre;
         this.email = email;
-        this.updatedAt = updatedAt;
-        this.createdAt = createdAt;
         this.profile = profile;
         this.role = role;
         this.empresa = empresa;
-        this.movimiento = movimiento;
+        Movimientos = movimientos;
+        this.updatedAt = updatedAt;
+        this.createdAt = createdAt;
     }
 
     public long getId() {
@@ -67,22 +89,6 @@ public class Empleado {
         this.email = email;
     }
 
-    public Date getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(Date updatedAt) {
-        this.updatedAt = updatedAt;
-    }
-
-    public Date getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
-    }
-
     public Profile getProfile() {
         return profile;
     }
@@ -107,19 +113,52 @@ public class Empleado {
         this.empresa = empresa;
     }
 
-    public Movimiento getMovimiento() {
-        return movimiento;
+    public List<Movimiento> getMovimientos() {
+        return Movimientos;
     }
 
-    public void setMovimiento(Movimiento movimiento) {
-        this.movimiento = movimiento;
+    public void setMovimientos(List<Movimiento> movimientos) {
+        Movimientos = movimientos;
     }
+
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+ /*   @Override
+    public String toString() {
+        return "Empleado{" +
+                "id=" + id +
+                ", nombre='" + nombre + '\'' +
+                ", email='" + email + '}';
+
+        }
+  */
 
     @Override
     public String toString() {
         return "Empleado{" +
                 "id=" + id +
                 ", nombre='" + nombre + '\'' +
-                ", email='" + email + '}';
+                ", email='" + email + '\'' +
+                ", profile=" + profile +
+                ", role=" + role +
+                ", empresa=" + empresa +
+                ", Movimientos=" + Movimientos +
+                ", updatedAt=" + updatedAt +
+                ", createdAt=" + createdAt +
+                '}';
     }
 }
