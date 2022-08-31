@@ -28,11 +28,11 @@ public class Empresa {
     @Column(name = "direccion", nullable = false, length = 50)
     private String direccion;
 
-    @OneToMany(mappedBy = "empleado", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany
     @JsonManagedReference
     private List<Empleado> empleados = new ArrayList<>();
 
-    @OneToMany(mappedBy = "empresa", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany
     @JsonManagedReference
     private List<Movimiento> movimientos = new ArrayList<>();
 

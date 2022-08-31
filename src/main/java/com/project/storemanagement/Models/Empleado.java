@@ -2,7 +2,6 @@ package com.project.storemanagement.Models;
 
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import org.hibernate.Transaction;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -37,7 +36,7 @@ public class Empleado {
     @JoinColumn(name = "empresa_id")
     private Empresa empresa;
 
-    @OneToMany(mappedBy = "empleado", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany
     @JsonManagedReference
     private List<Movimiento> Movimientos = new ArrayList<>();
 

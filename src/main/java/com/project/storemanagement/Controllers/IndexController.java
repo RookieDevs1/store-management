@@ -4,10 +4,9 @@ import com.project.storemanagement.Models.Empleado;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 @RestController
 public class IndexController {
-@GetMapping({"/"})
+@GetMapping({"/empleado"})
     public String index(Model model) {
     Empleado empleado = new Empleado();
     empleado.getId();
@@ -15,6 +14,7 @@ public class IndexController {
     empleado.setEmail("@");
     return empleado.toString();
 }
+
 
 
 }
