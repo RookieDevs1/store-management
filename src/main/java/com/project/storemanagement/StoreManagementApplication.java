@@ -1,17 +1,14 @@
 package com.project.storemanagement;
 
-import com.project.storemanagement.Models.Empleado;
-import com.project.storemanagement.Models.Empresa;
-import com.project.storemanagement.Models.Movimiento;
+
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.AutoConfiguration;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 
+@SpringBootApplication
 
 
-@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class })
+//@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class })
 public class StoreManagementApplication {
 
 	public static void main(String[] args)
