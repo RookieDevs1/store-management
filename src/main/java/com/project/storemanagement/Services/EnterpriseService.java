@@ -9,7 +9,7 @@ import java.util.List;
 @Service
 public class EnterpriseService {
 
-/*
+
     private EnterpriseRepository repositoryEnterprise;
 
     public EnterpriseService(EnterpriseRepository repositoryEnterprise) {
@@ -21,7 +21,7 @@ public class EnterpriseService {
     }
 
 
- */
+
 }
 
 

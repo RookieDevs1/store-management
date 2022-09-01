@@ -19,4 +19,8 @@ public class ProfileService {
         return this.repositoryProfile.findAll();
     }
 
+    public Profile createProfile(Profile profile){
+        return this.repositoryProfile.save(profile);
+    }
+
 }
