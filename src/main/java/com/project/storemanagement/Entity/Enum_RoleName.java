@@ -1,10 +1,10 @@
-package com.project.storemanagement.Models;
+package com.project.storemanagement.Entity;
 
 
 import javax.persistence.Table;
 
 @Table(name = "enum_rolename")
 public enum Enum_RoleName {
-    admim,
+    admin,
     operario;
 }

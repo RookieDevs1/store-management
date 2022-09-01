@@ -1,4 +1,4 @@
-package com.project.storemanagement.Models;
+package com.project.storemanagement.Entity;
 import javax.persistence.*;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -11,7 +11,7 @@ public class Profile {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false, unique = true)
-    private String id;
+    private Long id;
 
     @Column(name = "imagen")
     private String imagen;
@@ -21,7 +21,7 @@ public class Profile {
 
     @OneToOne
     @JoinColumn(name = "empleado_id")
-    private Empleado empleado;
+    private Employee empleado;
 
     @Column(name = "updatedAt")
     private Date updatedAt;
@@ -31,7 +31,7 @@ public class Profile {
     public Profile() {
     }
 
-    public Profile(String id, String imagen, String telefono, Empleado empleado, Date updatedAt, Date createdAt) {
+    public Profile(Long id, String imagen, String telefono, Employee empleado, Date updatedAt, Date createdAt) {
         this.id = id;
         this.imagen = imagen;
         this.telefono = telefono;
@@ -40,11 +40,11 @@ public class Profile {
         this.createdAt = createdAt;
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -64,11 +64,11 @@ public class Profile {
         this.telefono = telefono;
     }
 
-    public Empleado getEmpleado() {
+    public Employee getEmpleado() {
         return empleado;
     }
 
-    public void setEmpleado(Empleado empleado) {
+    public void setEmpleado(Employee empleado) {
         this.empleado = empleado;
     }
 

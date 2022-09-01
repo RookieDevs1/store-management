@@ -1,4 +1,4 @@
-package com.project.storemanagement.Models;
+package com.project.storemanagement.Entity;
 
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -10,18 +10,20 @@ import java.util.List;
 
 
 @Entity
-@Table(name = "empleado")
-public class Empleado {
+@Table(name = "employee")
+public class Employee {
     // Declarar Variables
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false, unique = true)
     private long id;
-    private String nombre;
+
+    @Column(name = "name", nullable = false, unique = true, length = 55)
+    private String name;
 
 
-    @Column(name = "email", nullable = false, unique = true, length = 50)
+    @Column(name = "email", nullable = false, unique = true, length = 60)
     private String email;
 
     @OneToOne
@@ -33,12 +35,12 @@ public class Empleado {
     private Enum_RoleName role;
 
     @ManyToOne
-    @JoinColumn(name = "empresa_id")
-    private Empresa empresa;
+    @JoinColumn(name = "enterprise_id")
+    private Enterprise enterprise;
 
     @OneToMany
-    @JsonManagedReference
-    private List<Movimiento> Movimientos = new ArrayList<>();
+    //@JsonManagedReference
+    private List<Transaction> transactions; //= new ArrayList<>();
 
     @Column(name = "updatedAt")
     private Date updatedAt;
@@ -47,19 +49,19 @@ public class Empleado {
 
 
     //Constructor vacio
-    public Empleado() {
+    public Employee() {
     }
   //constuctor
 
 
-    public Empleado(long id, String nombre, String email, Profile profile, Enum_RoleName role, Empresa empresa, List<Movimiento> movimientos, Date updatedAt, Date createdAt) {
+    public Employee(long id, String name, String email, Profile profile, Enum_RoleName role, Enterprise enterprise, List<Transaction> transactions, Date updatedAt, Date createdAt) {
         this.id = id;
-        this.nombre = nombre;
+        this.name = name;
         this.email = email;
         this.profile = profile;
         this.role = role;
-        this.empresa = empresa;
-        Movimientos = movimientos;
+        this.enterprise = enterprise;
+        this.transactions = transactions;
         this.updatedAt = updatedAt;
         this.createdAt = createdAt;
     }
@@ -72,12 +74,12 @@ public class Empleado {
         this.id = id;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getName() {
+        return name;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getEmail() {
@@ -104,20 +106,20 @@ public class Empleado {
         this.role = role;
     }
 
-    public Empresa getEmpresa() {
-        return empresa;
+    public Enterprise getEnterprise() {
+        return enterprise;
     }
 
-    public void setEmpresa(Empresa empresa) {
-        this.empresa = empresa;
+    public void setEnterprise(Enterprise enterprise) {
+        this.enterprise = enterprise;
     }
 
-    public List<Movimiento> getMovimientos() {
-        return Movimientos;
+    public List<Transaction> getTransactions() {
+        return transactions;
     }
 
-    public void setMovimientos(List<Movimiento> movimientos) {
-        Movimientos = movimientos;
+    public void setTransactions(List<Transaction> transactions) {
+        this.transactions = transactions;
     }
 
     public Date getUpdatedAt() {
@@ -136,28 +138,5 @@ public class Empleado {
         this.createdAt = createdAt;
     }
 
- /*   @Override
-    public String toString() {
-        return "Empleado{" +
-                "id=" + id +
-                ", nombre='" + nombre + '\'' +
-                ", email='" + email + '}';
 
-        }
-  */
-
-    @Override
-    public String toString() {
-        return "Empleado{" +
-                "id=" + id +
-                ", nombre='" + nombre + '\'' +
-                ", email='" + email + '\'' +
-                ", profile=" + profile +
-                ", role=" + role +
-                ", empresa=" + empresa +
-                ", Movimientos=" + Movimientos +
-                ", updatedAt=" + updatedAt +
-                ", createdAt=" + createdAt +
-                '}';
-    }
 }
