@@ -17,7 +17,7 @@ public class EmployeeController {
     public EmployeeController(EmployeeService serviceEmployee){
         this.serviceEmployee = serviceEmployee;
     }
-    @RequestMapping(value = "/profile", method = RequestMethod.GET)
+    @RequestMapping(value = "/employee", method = RequestMethod.GET)
     @GetMapping("/employee")
     public List<Employee> empleadoList(){
         return this.serviceEmployee.getEmpleadosList();
