@@ -13,15 +13,15 @@ public class Profile {
     @Column(name = "id", nullable = false, unique = true)
     private Long id;
 
-    @Column(name = "imagen")
-    private String imagen;
+    @Column(name = "image")
+    private String image;
 
-    @Column(name = "telefono", length = 15)
-    private String telefono;
+    @Column(name = "phone", length = 15)
+    private String phone;
 
     @OneToOne
     @JoinColumn(name = "empleado_id")
-    private Employee empleado;
+    private Employee employee;
 
     @Column(name = "updatedAt")
     private Date updatedAt;
@@ -31,11 +31,11 @@ public class Profile {
     public Profile() {
     }
 
-    public Profile(Long id, String imagen, String telefono, Employee empleado, Date updatedAt, Date createdAt) {
+    public Profile(Long id, String image, String phone, Employee employee, Date updatedAt, Date createdAt) {
         this.id = id;
-        this.imagen = imagen;
-        this.telefono = telefono;
-        this.empleado = empleado;
+        this.image = image;
+        this.phone = phone;
+        this.employee = employee;
         this.updatedAt = updatedAt;
         this.createdAt = createdAt;
     }
@@ -48,28 +48,28 @@ public class Profile {
         this.id = id;
     }
 
-    public String getImagen() {
-        return imagen;
+    public String getImage() {
+        return image;
     }
 
-    public void setImagen(String imagen) {
-        this.imagen = imagen;
+    public void setImage(String image) {
+        this.image = image;
     }
 
-    public String getTelefono() {
-        return telefono;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
-    public Employee getEmpleado() {
-        return empleado;
+    public Employee getEmployee() {
+        return employee;
     }
 
-    public void setEmpleado(Employee empleado) {
-        this.empleado = empleado;
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
 
     public Date getUpdatedAt() {

@@ -11,7 +11,7 @@ public class Enterprise {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false, unique = true)
-    private long id;
+    private Long id;
 
     @Column(name = "name", nullable = false, unique = true, length = 55)
     private String name;
@@ -44,7 +44,7 @@ public class Enterprise {
     }
     //Constructor con todos los atributos
 
-    public Enterprise(long id, String name, String document, String phone, String direction, List<Employee> employees, List<Transaction> transaction, Date updatedAt, Date createdAt) {
+    public Enterprise(Long id, String name, String document, String phone, String direction, List<Employee> employees, List<Transaction> transaction, Date updatedAt, Date createdAt) {
         this.id = id;
         this.name = name;
         this.document = document;
@@ -60,11 +60,11 @@ public class Enterprise {
     // Setter y Getters
 
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

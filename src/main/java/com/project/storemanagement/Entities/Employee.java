@@ -36,7 +36,7 @@ public class Employee {
     private Enterprise enterprise;
 
 
-    @OneToMany(mappedBy = "enterprise", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
     private List<Transaction> transactions; 
 
     @Column(name = "updatedAt")
