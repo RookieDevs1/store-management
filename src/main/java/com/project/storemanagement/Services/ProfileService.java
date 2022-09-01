@@ -1,6 +1,6 @@
 package com.project.storemanagement.Services;
 
-import com.project.storemanagement.Entity.Profile;
+import com.project.storemanagement.Entities.Profile;
 import com.project.storemanagement.Repositories.ProfileRepository;
 import org.springframework.stereotype.Service;
 

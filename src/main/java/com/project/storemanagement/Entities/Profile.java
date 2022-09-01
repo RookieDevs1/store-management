@@ -1,4 +1,4 @@
-package com.project.storemanagement.Entity;
+package com.project.storemanagement.Entities;
 import javax.persistence.*;
 import javax.persistence.Entity;
 import javax.persistence.Id;

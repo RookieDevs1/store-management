@@ -1,6 +1,6 @@
 package com.project.storemanagement.Repositories;
 
-import com.project.storemanagement.Entity.Profile;
+import com.project.storemanagement.Entities.Profile;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,9 +1,6 @@
-package com.project.storemanagement.Entity;
-
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+package com.project.storemanagement.Entities;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 

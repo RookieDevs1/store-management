@@ -1,4 +1,4 @@
-package com.project.storemanagement.Entity;
+package com.project.storemanagement.Entities;
 
 
 import javax.persistence.Table;
