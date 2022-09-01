@@ -35,9 +35,9 @@ public class Employee {
     @JoinColumn(name = "enterprise_id")
     private Enterprise enterprise;
 
-    @OneToMany
-    //@JsonManagedReference
-    private List<Transaction> transactions; //= new ArrayList<>();
+
+    @OneToMany(mappedBy = "enterprise", cascade = CascadeType.ALL)
+    private List<Transaction> transactions; 
 
     @Column(name = "updatedAt")
     private Date updatedAt;

@@ -25,16 +25,12 @@ public class Enterprise {
     @Column(name = "direction", nullable = false, length = 60)
     private String direction;
 
-    @OneToMany
-    // @JsonManagedReference
-    //private List<Employee> employees = new ArrayList<>();
+    @OneToMany(mappedBy = "enterprise")
     private List<Employee> employees;
 
 
-    @OneToMany
-    // @JsonManagedReference
-    //private List<Transaction> transaction = new ArrayList<>();
-    private List<Transaction> transaction;
+    @OneToMany(mappedBy = "enterprise", cascade = CascadeType.ALL)
+    private List<Transaction> transactions;
 
     @Column(name = "createdAt")
     private Date updatedAt;
@@ -55,7 +51,7 @@ public class Enterprise {
         this.phone = phone;
         this.direction = direction;
         this.employees = employees;
-        this.transaction = transaction;
+        this.transactions = transaction;
         this.updatedAt = updatedAt;
         this.createdAt = createdAt;
     }
@@ -113,11 +109,11 @@ public class Enterprise {
     }
 
     public List<Transaction> getTransaction() {
-        return transaction;
+        return transactions;
     }
 
     public void setTransaction(List<Transaction> transaction) {
-        this.transaction = transaction;
+        this.transactions = transaction;
     }
 
     public Date getUpdatedAt() {
