@@ -20,7 +20,7 @@ public class Profile {
     private String phone;
 
     @OneToOne
-    @JoinColumn(name = "empleado_id")
+    @JoinColumn(name = "employee_id")
     private Employee employee;
 
     @Column(name = "updatedAt")

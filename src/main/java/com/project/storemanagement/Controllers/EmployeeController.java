@@ -3,10 +3,7 @@ package com.project.storemanagement.Controllers;
 import com.project.storemanagement.Entities.Employee;
 import com.project.storemanagement.Services.EmployeeService;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,13 +16,15 @@ public class EmployeeController {
     public EmployeeController(EmployeeService serviceEmployee){
         this.serviceEmployee = serviceEmployee;
     }
-   // @RequestMapping(value = "/employee", method = RequestMethod.GET)
     @GetMapping("/employee")
-    public List<Employee> empleadoList(){
+    public List<Employee> employeeList(){
         return this.serviceEmployee.getEmpleadosList();
     }
 
-
+    @PostMapping("/employee")
+    public Employee createEmployee(@RequestBody Employee employee){
+        return this.serviceEmployee.createEmployee(employee);
+    }
 
 
 

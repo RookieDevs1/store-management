@@ -17,5 +17,8 @@ public List<Employee> getEmpleadosList(){
     return this.repositoryEmpleado.findAll();
 }
 
+public Employee createEmployee(Employee employee){
+    return this.repositoryEmpleado.save(employee);
+}
 
 }

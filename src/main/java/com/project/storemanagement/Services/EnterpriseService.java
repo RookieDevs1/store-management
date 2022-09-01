@@ -2,6 +2,7 @@ package com.project.storemanagement.Services;
 
 import com.project.storemanagement.Entities.Enterprise;
 import com.project.storemanagement.Repositories.EnterpriseRepository;
+import net.bytebuddy.asm.Advice;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
@@ -20,6 +21,10 @@ public class EnterpriseService {
         return this.repositoryEnterprise.findAll();
     }
 
+    public Enterprise createEnterprise(Enterprise enterprise){
+
+        return this.repositoryEnterprise.save(enterprise);
+    }
 
 
 }
