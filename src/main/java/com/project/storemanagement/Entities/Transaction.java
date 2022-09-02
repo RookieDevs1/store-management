@@ -1,5 +1,7 @@
 package com.project.storemanagement.Entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.Entity;
 import javax.persistence.*;
 import javax.persistence.ManyToOne;
@@ -21,11 +23,12 @@ public class Transaction {
     @Column(name = "amount", nullable = false)
     private float amount;
 
-
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "employee_id")
     private Employee employee;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "enterprise_id")
     private Enterprise enterprise;

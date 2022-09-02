@@ -1,5 +1,8 @@
 package com.project.storemanagement.Entities;
 
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
@@ -24,13 +27,13 @@ public class Enterprise {
 
     @Column(name = "direction", nullable = false, length = 60)
     private String direction;
-
-    @OneToMany(mappedBy = "enterprise")
+    @JsonIgnore
+    @OneToMany(mappedBy = "enterprise", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Employee> employees;
-
-
-    @OneToMany(mappedBy = "enterprise", cascade = CascadeType.ALL)
+    @JsonIgnore
+    @OneToMany(mappedBy = "enterprise", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Transaction> transactions;
+
 
     @Column(name = "createdAt")
     private Date updatedAt;

@@ -1,4 +1,6 @@
 package com.project.storemanagement.Entities;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -19,8 +21,9 @@ public class Profile {
     @Column(name = "phone", length = 15)
     private String phone;
 
-    @OneToOne
-    @JoinColumn(name = "employee_id")
+    @JsonIgnore
+   @JoinColumn(name = "employee_id")
+   @OneToOne(fetch = FetchType.LAZY)
     private Employee employee;
 
     @Column(name = "updatedAt")
@@ -28,6 +31,7 @@ public class Profile {
 
     @Column(name = "createdAt")
     private Date createdAt;
+
     public Profile() {
     }
 

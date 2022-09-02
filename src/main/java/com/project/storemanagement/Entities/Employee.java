@@ -1,6 +1,8 @@
 package com.project.storemanagement.Entities;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
@@ -30,19 +32,29 @@ public class Employee {
     @Enumerated(EnumType.STRING)
     @Column(name = "role")
     private Enum_RoleName role;
-
+/*
     @ManyToOne
-    @JoinColumn(name = "enterprise_id")
+  //  @JoinColumn(name = "enterprise_id")
     private Enterprise enterprise;
+    @OneToMany(mappedBy = "employee")
+    private List<Transaction> transactions;
 
 
-    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
-    private List<Transaction> transactions; 
+ */
+@JsonIgnore
+   @ManyToOne
+   @JoinColumn(name = "enterprise_id")
+   private Enterprise enterprise;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Transaction> transactions;
+
+    @Column(name = "createdAt")
+    private Date createdAt;
 
     @Column(name = "updatedAt")
     private Date updatedAt;
-    @Column(name = "createdAt")
-    private Date createdAt;
 
 
     //Constructor vacio
