@@ -11,7 +11,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "employee")
-//@JsonIgnoreProperties({"hibernateLazyInitializer","hanler"})
+@JsonIgnoreProperties({"hibernateLazyInitializer","hanler"})
 public class Employee {
     // Declarar Variables
 

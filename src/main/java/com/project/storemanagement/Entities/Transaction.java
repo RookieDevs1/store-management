@@ -1,6 +1,7 @@
 package com.project.storemanagement.Entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.Entity;
 import javax.persistence.*;
@@ -10,6 +11,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "transaction")
+@JsonIgnoreProperties({"hibernateLazyInitializer","hanler"})
 public class Transaction {
 
     @Id

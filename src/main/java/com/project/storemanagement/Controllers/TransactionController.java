@@ -1,12 +1,10 @@
 package com.project.storemanagement.Controllers;
 
+import com.project.storemanagement.Entities.Employee;
 import com.project.storemanagement.Entities.Transaction;
 import com.project.storemanagement.Services.TransactionService;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -29,4 +27,10 @@ public class TransactionController {
     public Transaction createTransaction(@RequestBody Transaction transaction){
         return this.serviceTransaction.createTransaction(transaction);
     }
+
+    @GetMapping("/transaction/{id}")
+    public Transaction getTransaction(@PathVariable("id") Long id){
+        return serviceTransaction.getTransaction(id);
+    }
+
 }

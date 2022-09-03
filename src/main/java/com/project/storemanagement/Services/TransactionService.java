@@ -1,5 +1,6 @@
 package com.project.storemanagement.Services;
 
+import com.project.storemanagement.Entities.Employee;
 import com.project.storemanagement.Entities.Transaction;
 import com.project.storemanagement.Repositories.TransactionRepository;
 import org.springframework.stereotype.Service;
@@ -21,5 +22,9 @@ public class TransactionService {
 
     public Transaction createTransaction(Transaction transaction){
         return this.repositoryTransaction.save(transaction);
+    }
+
+    public Transaction getTransaction(Long id){
+        return repositoryTransaction.getOne(id);
     }
 }

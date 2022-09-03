@@ -6,10 +6,8 @@ import com.project.storemanagement.Entities.Enterprise;
 import com.project.storemanagement.Services.EnterpriseService;
 import net.bytebuddy.asm.Advice;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 
@@ -33,6 +31,10 @@ public class EnterpriseController {
     }
 
 
+    @GetMapping("/enterprise/{id}")
+    public Enterprise getEnterprise(@PathVariable("id") Long id){
+        return serviceEnterprise.getEnterprise(id);
+    }
 
 
 }

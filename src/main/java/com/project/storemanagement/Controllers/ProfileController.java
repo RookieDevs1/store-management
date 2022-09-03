@@ -36,7 +36,8 @@ public class ProfileController {
     public  Profile getProfile(@PathVariable("id") Long id){
         return serviceProfile.getProfile(id);
     }
-        @DeleteMapping("/profile/{id}")
+
+    @DeleteMapping("/profile/{id}")
     public void delete(@PathVariable("id") Long id){
         serviceProfile.delete(id);
     }
