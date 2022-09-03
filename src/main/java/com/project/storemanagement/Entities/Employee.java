@@ -2,6 +2,7 @@ package com.project.storemanagement.Entities;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -10,19 +11,20 @@ import java.util.List;
 
 @Entity
 @Table(name = "employee")
+//@JsonIgnoreProperties({"hibernateLazyInitializer","hanler"})
 public class Employee {
     // Declarar Variables
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false, unique = true)
-    private long id;
+    @Column(name = "id", unique = true)
+    private Long id;
 
-    @Column(name = "name", nullable = false, unique = true, length = 55)
+    @Column(name = "name",  unique = true, length = 55)
     private String name;
 
 
-    @Column(name = "email", nullable = false, unique = true, length = 60)
+    @Column(name = "email", unique = true, length = 60)
     private String email;
 
     @OneToOne
@@ -32,15 +34,7 @@ public class Employee {
     @Enumerated(EnumType.STRING)
     @Column(name = "role")
     private Enum_RoleName role;
-/*
-    @ManyToOne
-  //  @JoinColumn(name = "enterprise_id")
-    private Enterprise enterprise;
-    @OneToMany(mappedBy = "employee")
-    private List<Transaction> transactions;
 
-
- */
 @JsonIgnore
    @ManyToOne
    @JoinColumn(name = "enterprise_id")
@@ -63,7 +57,7 @@ public class Employee {
   //constuctor
 
 
-    public Employee(long id, String name, String email, Profile profile, Enum_RoleName role, Enterprise enterprise, List<Transaction> transactions, Date updatedAt, Date createdAt) {
+    public Employee(Long id, String name, String email, Profile profile, Enum_RoleName role, Enterprise enterprise, List<Transaction> transactions, Date updatedAt, Date createdAt) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -75,11 +69,11 @@ public class Employee {
         this.createdAt = createdAt;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

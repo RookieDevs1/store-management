@@ -1,5 +1,6 @@
 package com.project.storemanagement.Entities;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import javax.persistence.Entity;
@@ -9,6 +10,7 @@ import javax.persistence.Table;
 import java.util.Date;
 @Entity
 @Table(name = "profile")
+@JsonIgnoreProperties({"hibernateLazyInitializer","hanler"})
 public class Profile {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
