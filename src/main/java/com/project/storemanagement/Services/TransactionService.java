@@ -27,4 +27,8 @@ public class TransactionService {
     public Transaction getTransaction(Long id){
         return repositoryTransaction.getOne(id);
     }
+
+    public void delete(Long id){
+        repositoryTransaction.deleteById(id);
+    }
 }

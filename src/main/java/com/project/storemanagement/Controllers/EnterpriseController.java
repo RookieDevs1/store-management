@@ -5,6 +5,7 @@ import com.project.storemanagement.Entities.Employee;
 import com.project.storemanagement.Entities.Enterprise;
 import com.project.storemanagement.Services.EnterpriseService;
 import net.bytebuddy.asm.Advice;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,11 +31,20 @@ public class EnterpriseController {
         return this.serviceEnterprise.createEnterprise(enterprise);
     }
 
-
+//buscar por id
     @GetMapping("/enterprise/{id}")
     public Enterprise getEnterprise(@PathVariable("id") Long id){
         return serviceEnterprise.getEnterprise(id);
     }
+
+    //eliminar por id
+    @DeleteMapping("/enterprise/{id}")
+    @Query("SELECT DISTINCT enterprise.id from enterprise  where  enterprise.id= ?")
+    public void delete(@PathVariable("id") Long id){
+        serviceEnterprise.delete(id);
+    }
+
+
 
 
 }

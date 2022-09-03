@@ -29,6 +29,10 @@ public class EnterpriseService {
         return repositoryEnterprise.getOne(id);
     }
 
+    public void delete(Long id){
+        repositoryEnterprise.deleteById(id);
+    }
+
 
 
 

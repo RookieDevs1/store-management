@@ -3,6 +3,7 @@ package com.project.storemanagement.Controllers;
 import com.project.storemanagement.Entities.Employee;
 import com.project.storemanagement.Entities.Transaction;
 import com.project.storemanagement.Services.TransactionService;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,5 +33,13 @@ public class TransactionController {
     public Transaction getTransaction(@PathVariable("id") Long id){
         return serviceTransaction.getTransaction(id);
     }
+
+    @DeleteMapping("/transaction/{id}")
+    @Query("SELECT DISTINCT transaction.id from transaction  where  transaction.id= ?")
+    public void delete(@PathVariable("id") Long id){
+        serviceTransaction.delete(id);
+    }
+
+
 
 }
