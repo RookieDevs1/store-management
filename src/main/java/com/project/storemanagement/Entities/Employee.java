@@ -27,16 +27,16 @@ public class Employee {
     @Column(name = "email", unique = true, length = 60)
     private String email;
 
-    @OneToOne
-    @JoinColumn(name = "profile_id")
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "profile_id" )
     private Profile profile;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "role")
     private Enum_RoleName role;
 
-@JsonIgnore
-   @ManyToOne
+   @JsonIgnore
+   @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
    @JoinColumn(name = "enterprise_id")
    private Enterprise enterprise;
 

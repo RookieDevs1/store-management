@@ -35,13 +35,10 @@ public class EmployeeController {
 
     // @RequestBody Employee employee
     @DeleteMapping("/employee/{id}")
-
-  // @Query("SELECT DISTINCT id from employee  where employee.id= ?")
-        public void delete( @PathVariable("id") Long id){
+    @Query("SELECT DISTINCT employee.id from employee and profile  where  employee.id= ?")
+        public void delete(@PathVariable("id") Long id){
         serviceEmployee.delete(id);
     }
-
-
 
 
 }
