@@ -1,15 +1,10 @@
 package com.project.storemanagement.Controllers;
 
 import com.project.storemanagement.Entities.Employee;
-import com.project.storemanagement.Entities.Profile;
 import com.project.storemanagement.Services.EmployeeService;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
-//@Controller
 @RestController
 public class EmployeeController {
 
@@ -33,12 +28,15 @@ public class EmployeeController {
         return serviceEmployee.getEmployee(id);
     }
 
-    // @RequestBody Employee employee
     @DeleteMapping("/employee/{id}")
-    @Query("SELECT DISTINCT employee.id from employee where  employee.id= ?")
+   // @Query("SELECT DISTINCT employee.id from employee where  employee.id= ?")
         public void delete(@PathVariable("id") Long id){
         serviceEmployee.delete(id);
     }
+    @PutMapping("/employee/{id}")
+    public void actulizarEmployee(@RequestBody Employee employee){
+        serviceEmployee.actulizar(employee);
 
+    }
 
 }

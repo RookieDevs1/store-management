@@ -1,5 +1,6 @@
 package com.project.storemanagement.Controllers;
 
+import com.project.storemanagement.Entities.Employee;
 import com.project.storemanagement.Entities.Profile;
 import com.project.storemanagement.Services.ProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +43,9 @@ public class ProfileController {
         serviceProfile.delete(id);
     }
 
-
+    @PutMapping("/profile/{id}")
+    public void actulizarProfile(@RequestBody Profile profile){
+        serviceProfile.actulizar(profile);
+    }
 }
 
