@@ -33,7 +33,9 @@ public class EnterpriseService {
         repositoryEnterprise.deleteById(id);
     }
 
-
+    public void  actulizar(Enterprise enterprise){
+        repositoryEnterprise.save(enterprise);
+    }
 
 
 }
