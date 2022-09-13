@@ -58,7 +58,7 @@ public class Employee {
   //constuctor
 
 
-    public Employee(Long id, String name, String email, Profile profile, Enum_RoleName role, Enterprise enterprise, List<Transaction> transactions,Date createdAt, Date updatedAt ) {
+    public Employee(Long id, String name, String email, Profile profile, Enum_RoleName role, Enterprise enterprise, List<Transaction> transactions, Date createdAt, Date updatedAt ) {
         this.id = id;
         this.name = name;
         this.email = email;
