@@ -1,6 +1,7 @@
 package com.project.storemanagement.Services;
 
 import com.project.storemanagement.Entities.Employee;
+import com.project.storemanagement.Entities.Profile;
 import com.project.storemanagement.Entities.Transaction;
 import com.project.storemanagement.Repositories.TransactionRepository;
 import org.springframework.stereotype.Service;
@@ -31,4 +32,9 @@ public class TransactionService {
     public void delete(Long id){
         repositoryTransaction.deleteById(id);
     }
+
+    public void  actulizar(Transaction transaction){
+        repositoryTransaction.save(transaction);
+    }
+
 }

@@ -1,44 +1,60 @@
 package com.project.storemanagement.Controllers;
 
 import com.project.storemanagement.Entities.Employee;
-import com.project.storemanagement.Entities.Profile;
 import com.project.storemanagement.Services.EmployeeService;
-import org.springframework.data.jpa.repository.Query;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.core.oidc.user.OidcUser;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
-//@Controller
-@RestController
+@Validated
+@Controller
+@RequestMapping
 public class EmployeeController {
 
-    EmployeeService serviceEmployee;
 
-    public EmployeeController(EmployeeService serviceEmployee){
-        this.serviceEmployee = serviceEmployee;
+
+    @GetMapping("/")
+    public String home(Model model, @AuthenticationPrincipal OidcUser principal) {
+        return "index";
     }
+    @Autowired
+    private EmployeeService serviceEmployee;
+
+
     @GetMapping("/employee")
-    public List<Employee> employeeList(){
-        return this.serviceEmployee.getEmpleadosList();
+    // @RequestMapping(value = "listar", method = RequestMethod.GET)
+    public String employeeList(Model model){
+        List<Employee> employee = serviceEmployee.getEmployeeList();
+        model.addAttribute("employee", employee);
+        return "employee";
     }
 
-    @PostMapping("/employee")
-    public Employee createEmployee(@RequestBody Employee employee){
-        return this.serviceEmployee.createEmployee(employee);
+    @GetMapping("/newEmployee")
+    public  String addEmployee(Model model){
+        model.addAttribute("employee", new Employee());
+        return "newEmployee";
     }
 
-    @GetMapping("/employee/{id}")
-    public Employee getEmployee(@PathVariable("id") Long id){
-        return serviceEmployee.getEmployee(id);
+    @PostMapping("/saveEmployee")
+    public String saveEmployee(@ModelAttribute("employee") Employee employee) {
+        // save employee to database
+        serviceEmployee.saveEmployee(employee);
+        return "redirect:/employee";
     }
 
-    // @RequestBody Employee employee
-    @DeleteMapping("/employee/{id}")
-    @Query("SELECT DISTINCT employee.id from employee where  employee.id= ?")
-        public void delete(@PathVariable("id") Long id){
-        serviceEmployee.delete(id);
+
+    @GetMapping("/updateEmployee/{id}")
+    public String updateEmployee(@PathVariable ( value = "id") Long id, Model model) {
+        Employee employee = serviceEmployee.getEmployeeById(id);
+        model.addAttribute("employee", employee);
+        return "updateEmployee";
     }
+
 
 
 }

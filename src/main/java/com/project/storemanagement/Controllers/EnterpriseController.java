@@ -3,6 +3,7 @@ package com.project.storemanagement.Controllers;
 
 import com.project.storemanagement.Entities.Employee;
 import com.project.storemanagement.Entities.Enterprise;
+import com.project.storemanagement.Entities.Profile;
 import com.project.storemanagement.Services.EnterpriseService;
 import net.bytebuddy.asm.Advice;
 import org.springframework.data.jpa.repository.Query;
@@ -38,12 +39,16 @@ public class EnterpriseController {
     }
 
     //eliminar por id
+    //  @Query("SELECT DISTINCT enterprise.id from enterprise  where  enterprise.id= ?")
     @DeleteMapping("/enterprise/{id}")
-    @Query("SELECT DISTINCT enterprise.id from enterprise  where  enterprise.id= ?")
     public void delete(@PathVariable("id") Long id){
         serviceEnterprise.delete(id);
     }
 
+    @PutMapping("/enterprise/{id}")
+    public void actulizarEnterprise(@RequestBody Enterprise enterprise){
+        serviceEnterprise.actulizar(enterprise);
+    }
 
 
 

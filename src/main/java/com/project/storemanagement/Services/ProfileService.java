@@ -1,5 +1,6 @@
 package com.project.storemanagement.Services;
 
+import com.project.storemanagement.Entities.Employee;
 import com.project.storemanagement.Entities.Profile;
 import com.project.storemanagement.Repositories.ProfileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +35,10 @@ public Profile getProfile(Long id){
 
     public void delete(Long id){
         repositoryProfile.deleteById(id);
+    }
+
+    public void  actulizar(Profile profile){
+        repositoryProfile.save(profile);
     }
 
 

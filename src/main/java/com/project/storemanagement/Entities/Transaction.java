@@ -26,12 +26,12 @@ public class Transaction {
     private float amount;
 
     @JsonIgnore
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne//(cascade = CascadeType.ALL)
     @JoinColumn(name = "employee_id")
     private Employee employee;
 
     @JsonIgnore
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne //s(cascade = CascadeType.ALL)
     @JoinColumn(name = "enterprise_id")
     private Enterprise enterprise;
 

@@ -1,8 +1,7 @@
 package com.project.storemanagement.Entities;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.*;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -28,7 +27,7 @@ public class Employee {
     private String email;
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "profile_id" )
+    @JoinColumn(name = "profile_id", unique = true )
     private Profile profile;
 
     @Enumerated(EnumType.STRING)
@@ -38,6 +37,8 @@ public class Employee {
    @JsonIgnore
    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
    @JoinColumn(name = "enterprise_id")
+ //  @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+  // @JsonIdentityReference(alwaysAsId = true)
    private Enterprise enterprise;
 
     @JsonIgnore
@@ -57,7 +58,7 @@ public class Employee {
   //constuctor
 
 
-    public Employee(Long id, String name, String email, Profile profile, Enum_RoleName role, Enterprise enterprise, List<Transaction> transactions, Date updatedAt, Date createdAt) {
+    public Employee(Long id, String name, String email, Profile profile, Enum_RoleName role, Enterprise enterprise, List<Transaction> transactions,Date createdAt, Date updatedAt ) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -65,8 +66,9 @@ public class Employee {
         this.role = role;
         this.enterprise = enterprise;
         this.transactions = transactions;
-        this.updatedAt = updatedAt;
         this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+
     }
 
     public Long getId() {

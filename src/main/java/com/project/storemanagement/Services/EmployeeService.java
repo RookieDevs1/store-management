@@ -1,33 +1,62 @@
 package com.project.storemanagement.Services;
 
 import com.project.storemanagement.Entities.Employee;
-import com.project.storemanagement.Entities.Profile;
 import com.project.storemanagement.Repositories.EmployeeRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+
 @Service
 public class EmployeeService {
-private EmployeeRepository repositoryEmpleado;
+private EmployeeRepository repositoryEmployee;
 
 public EmployeeService(EmployeeRepository repositoryEmpleado){
-    this.repositoryEmpleado =repositoryEmpleado;
+    this.repositoryEmployee =repositoryEmpleado;
 }
 
-public List<Employee> getEmpleadosList(){
-    return this.repositoryEmpleado.findAll();
+public List<Employee> getEmployeeList(){
+    return repositoryEmployee.findAll();
 }
 
 public Employee createEmployee(Employee employee){
-    return this.repositoryEmpleado.save(employee);
+    return this.repositoryEmployee.save(employee);
 }
 
-    public Employee getEmployee(Long id){
-        return repositoryEmpleado.getOne(id);
-    }
 
+public int saveEmployee(Employee employee){
+    int res=0;
+    Employee employee1= repositoryEmployee.save(employee);
+    if(!employee1.equals(null)){
+        res=1;
+    }
+    return res;
+}
+/*
+    public Employee getEmployee(Long id){
+        return repositoryEmployee.getOne(id);
+    }
+    */
+
+
+    public Employee getEmployeeById(long id) {
+        Optional<Employee> optional = repositoryEmployee.findById(id);
+        Employee employee = null;
+        if (optional.isPresent()) {
+            employee = optional.get();
+        } else {
+            throw new RuntimeException(" Employee not found for id :: " + id);
+        }
+        return employee;
+    }
 
     public void delete(Long id){
-        repositoryEmpleado.deleteById(id);
+        repositoryEmployee.deleteById(id);
     }
+
+    public void  actulizar(Employee employee){
+       repositoryEmployee.save(employee);
+}
+
+
 }
