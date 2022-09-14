@@ -2,6 +2,7 @@ package com.project.storemanagement.Entities;
 
 
 import com.fasterxml.jackson.annotation.*;
+import com.project.storemanagement.Enum.Enum_RoleName;
 
 import javax.persistence.*;
 import java.util.Date;
