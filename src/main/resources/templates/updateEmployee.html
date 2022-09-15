@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="ISO-8859-1">
+    <meta charset="UTF-8">
     <title>Editar</title>
 
     <link rel="stylesheet"
@@ -37,6 +37,7 @@
 
                     <div class="card-footer">
                         <button type="submit" class="btn btn-success" > Actualizar </button>
+                        <button th:href="@{employee}" class="btn btn-outline-danger">Cancelar </button>
                     </div>
                 </div>
             </div>

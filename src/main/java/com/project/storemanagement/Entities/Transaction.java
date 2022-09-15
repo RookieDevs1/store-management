@@ -17,7 +17,7 @@ public class Transaction {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false, unique = true)
-    private long id;
+    private Long id;
 
     @Column(name = "concept", nullable = false)
     private String concept;
@@ -44,7 +44,7 @@ public class Transaction {
     public Transaction() {
     }
 
-    public Transaction(long id, String concept, float amount, Employee employee, Enterprise enterprise, Date updatedAt, Date createdAt) {
+    public Transaction(Long id, String concept, float amount, Employee employee, Enterprise enterprise, Date updatedAt, Date createdAt) {
         this.id = id;
         this.concept = concept;
         this.amount = amount;
@@ -54,11 +54,11 @@ public class Transaction {
         this.createdAt = createdAt;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

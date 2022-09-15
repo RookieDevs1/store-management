@@ -3,6 +3,7 @@ package com.project.storemanagement.Controllers;
 import com.project.storemanagement.Entities.Employee;
 import com.project.storemanagement.Services.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.core.oidc.user.OidcUser;
 import org.springframework.stereotype.Controller;
@@ -18,10 +19,7 @@ public class EmployeeController {
 
 
 
-    @GetMapping("/")
-    public String home(Model model, @AuthenticationPrincipal OidcUser principal) {
-        return "index";
-    }
+
     @Autowired
     private EmployeeService serviceEmployee;
 
@@ -41,8 +39,8 @@ public class EmployeeController {
     }
 
     @PostMapping("/saveEmployee")
-    public String saveEmployee(@ModelAttribute("employee") Employee employee) {
-        // save employee to database
+    public String saveEmployee(@DateTimeFormat(pattern = "YYY-MM-DD") @ModelAttribute("employee") Employee employee) {
+        //Guardar empleado en la base de datos
         serviceEmployee.saveEmployee(employee);
         return "redirect:/employee";
     }
@@ -61,8 +59,6 @@ public class EmployeeController {
        serviceEmployee.delete(id);
         return "redirect:/employee";
     }
-
-
 
 
 }

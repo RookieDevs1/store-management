@@ -1,17 +1,22 @@
 package com.project.storemanagement.Controllers;
 
 import com.project.storemanagement.Entities.Employee;
-import com.project.storemanagement.Entities.Profile;
 import com.project.storemanagement.Entities.Transaction;
 import com.project.storemanagement.Services.TransactionService;
-import org.springframework.data.jpa.repository.Query;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
-//@Controller
-@RestController
+@Validated
+@Controller
+@RequestMapping
 public class TransactionController {
 
     TransactionService serviceTransaction;
@@ -21,29 +26,39 @@ public class TransactionController {
     }
 
     @GetMapping("/transaction")
-    public List<Transaction> transactionsList(){
-        return this.serviceTransaction.getTransactionList();
+    public String transactionList(Model model){
+        List<Transaction> transaction = serviceTransaction.getTransactionList();
+        model.addAttribute("transaction", transaction);
+        return "transaction";
     }
 
-    @PostMapping("/transaction")
-    public Transaction createTransaction(@RequestBody Transaction transaction){
-        return this.serviceTransaction.createTransaction(transaction);
+    @GetMapping("/newTransaction")
+    public  String addTransaction(Model model){
+        model.addAttribute("transaction", new Transaction());
+        return "newTransaction";
     }
 
-    @GetMapping("/transaction/{id}")
-    public Transaction getTransaction(@PathVariable("id") Long id){
-        return serviceTransaction.getTransaction(id);
+    @PostMapping("/saveTransaction")
+    public String saveTransaction(@ModelAttribute @DateTimeFormat(pattern = "yyyy-MM-dd") Transaction transaction, Model model ) {
+        model.addAttribute(transaction);
+        serviceTransaction.saveTransaction(transaction);
+        return "redirect:/transaction";
     }
 
-    @DeleteMapping("/transaction/{id}")
-  //  @Query("SELECT DISTINCT transaction.id from transaction  where  transaction.id= ?")
-    public void delete(@PathVariable("id") Long id){
-        serviceTransaction.delete(id);
+
+
+    @GetMapping("/updateTransaction/{id}")
+    public String updateTransaction(@PathVariable( value = "id") Long id, Model model) {
+        Transaction transaction = serviceTransaction.getTransactionById(id);
+        model.addAttribute("transaction", transaction);
+        return "updateTransaction";
     }
 
-    @PutMapping("/transaction/{id}")
-    public void actulizarProfile(@RequestBody Transaction transaction){
-        serviceTransaction.actulizar(transaction);
+
+    @GetMapping("/deleteTransaction/{id}")
+    public String deleteTransaction(Model model, @PathVariable (value = "id") Long id) {
+        serviceTransaction.deleteTransaction(id);
+        return "redirect:/transaction";
     }
 
 

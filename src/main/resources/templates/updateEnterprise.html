@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Editar</title>
+
+  <link rel="stylesheet"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-4">
+  <div class="col-sm-6">
+    <form th:action="@{/saveEnterprise}" th:object="${enterprise}" method="POST">
+      <div class="card">
+        <div class="card-header">
+          <h3>Actualizar Empresa</h3>
+        </div>
+        <div class="card-body">
+          <div class="form-group">
+            <label>ID</label>
+            <input th:field="*{id}" type="text" class="form-control"/>
+          </div>
+          <div class="form-group">
+            <label>Documento</label>
+            <input th:field="*{document}" type="text" class="form-control"/>
+          </div>
+          <div class="form-group">
+            <label>Nombre</label>
+            <input th:field="*{name}" type="text" class="form-control"/>
+          </div>
+
+          <div class="form-group">
+            <label>Dirección</label>
+            <input th:field="*{direction}" type="text" class="form-control"/>
+          </div>
+
+          <div class="form-group">
+            <label>Teléfono</label>
+            <input th:field="*{phone}" type="text" class="form-control"/>
+          </div>
+
+          <div class="card-footer">
+            <button type="submit" class="btn btn-success" > Actualizar </button>
+            <button th:href="@{enterprise}" class="btn btn-outline-danger">Cancelar </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+</body>
+</html>

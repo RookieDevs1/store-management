@@ -39,7 +39,7 @@ public int saveEmployee(Employee employee){
     */
 
 
-    public Employee getEmployeeById(long id) {
+    public Employee getEmployeeById(Long id) {
         Optional<Employee> optional = repositoryEmployee.findById(id);
         Employee employee = null;
         if (optional.isPresent()) {
