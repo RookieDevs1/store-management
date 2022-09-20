@@ -1,7 +1,9 @@
 package com.project.storemanagement.Controllers;
 
 import com.project.storemanagement.Entities.Employee;
+import com.project.storemanagement.Entities.Enterprise;
 import com.project.storemanagement.Services.EmployeeService;
+import com.project.storemanagement.Services.EnterpriseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -10,6 +12,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import java.util.List;
 
 @Validated
@@ -18,46 +22,81 @@ import java.util.List;
 public class EmployeeController {
 
 
-
-
     @Autowired
-    private EmployeeService serviceEmployee;
+    EmployeeService employeeService;
+    @Autowired
+    EnterpriseService enterpriseService;
 
 
     @GetMapping("/employee")
-    // @RequestMapping(value = "listar", method = RequestMethod.GET)
-    public String employeeList(Model model){
-        List<Employee> employee = serviceEmployee.getEmployeeList();
-        model.addAttribute("employee", employee);
+    public String viewEmployee(Model model, @ModelAttribute("message") String message) {
+        List<Employee> employeeList = employeeService.getAllEmployee();
+        model.addAttribute("employee", employeeList);
+        model.addAttribute("message", message);
         return "employee";
     }
 
     @GetMapping("/newEmployee")
-    public  String addEmployee(Model model){
-        model.addAttribute("employee", new Employee());
+    public String newEmployee(Model model, @ModelAttribute("message") String message) {
+        Employee employee = new Employee();
+        List<Enterprise> enterpriseList = enterpriseService.getAllEnterprise();
+
+        model.addAttribute("employee", employee);
+        model.addAttribute("enterprise", enterpriseList);
+        model.addAttribute("message", message);
         return "newEmployee";
     }
 
     @PostMapping("/saveEmployee")
-    public String saveEmployee(@DateTimeFormat(pattern = "YYY-MM-DD") @ModelAttribute("employee") Employee employee) {
-        //Guardar empleado en la base de datos
-        serviceEmployee.saveEmployee(employee);
-        return "redirect:/employee";
+    public String saveEmployee(Employee employee, RedirectAttributes redirectAttributes) {
+        if (employeeService.saveOrUpdateEmployee(employee)) {
+            redirectAttributes.addFlashAttribute("message", "saveOK");
+            return "redirect:/employee";
+        }
+        redirectAttributes.addFlashAttribute("message", "saveERROR");
+        return "redirect:/newEmployee";
     }
 
-
     @GetMapping("/updateEmployee/{id}")
-    public String updateEmployee(@PathVariable ( value = "id") Long id, Model model) {
-        Employee employee = serviceEmployee.getEmployeeById(id);
+    public String editEmployee(Model model, @PathVariable Long id, @ModelAttribute("message") String message) {
+        List<Enterprise> enterpriseList = enterpriseService.getAllEnterprise();
+
+        Employee employee = employeeService.getEmployeeById(id).get();
+        model.addAttribute("enterprise", enterpriseList);
         model.addAttribute("employee", employee);
+        model.addAttribute("message", message);
         return "updateEmployee";
     }
 
 
-     @GetMapping("/deleteEmployee/{id}")
-    public String deleteEmployee(Model model, @PathVariable (value = "id") Long id) {
-       serviceEmployee.delete(id);
+
+    @PostMapping("/updateEmployee")
+    public String updateEmployee(@ModelAttribute("employee")Employee employee, RedirectAttributes redirectAttributes) {
+        if (employeeService.saveOrUpdateEmployee(employee)) {
+            redirectAttributes.addFlashAttribute("message", "updateOK");
+            return "redirect:/employee";
+        }
+        redirectAttributes.addFlashAttribute("message", "updateERROR");
+        return "redirect:/updateEmployee";
+    }
+
+
+
+    @GetMapping("/deleteEmployee/{id}")
+    public String deleteEmployee(@PathVariable Long id, RedirectAttributes redirectAttributes) {
+        if (employeeService.deleteEmployee(id)) {
+            redirectAttributes.addFlashAttribute("message", "deleteERROR");
+            return "redirect:/employee";
+        }
+        redirectAttributes.addFlashAttribute("message", "deleteOK");
         return "redirect:/employee";
+    }
+
+    @GetMapping("/enterprise/{id}/employee")
+    public String viewEmployeeByEnterprise(@PathVariable("id") Long id, Model model){
+        List<Employee> employeeList = employeeService.getEmployeeByEnterprise(id);
+        model.addAttribute("employee",employeeList);
+        return "employee";
     }
 
 

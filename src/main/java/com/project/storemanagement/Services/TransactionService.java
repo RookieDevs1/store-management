@@ -5,56 +5,48 @@ import com.project.storemanagement.Entities.Enterprise;
 import com.project.storemanagement.Entities.Profile;
 import com.project.storemanagement.Entities.Transaction;
 import com.project.storemanagement.Repositories.TransactionRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class TransactionService {
 
-    private TransactionRepository repositoryTransaction;
 
-    public TransactionService(TransactionRepository repositoryTransaction){
-            this.repositoryTransaction = repositoryTransaction;
+
+    @Autowired
+    TransactionRepository transactionRepository;
+
+    public List<Transaction> getAllTransaction(){
+        List<Transaction> transactionList= new ArrayList<>();
+        transactionRepository.findAll().forEach(transaction -> transactionList.add(transaction));
+        return transactionList;
     }
 
-    public List<Transaction> getTransactionList(){
-        return this.repositoryTransaction.findAll();
+    public Optional<Transaction> getTransactionById(Long id){ //Existe optional y asi se podria usar
+
+        return transactionRepository.findById(id);
     }
 
-    public Transaction createTransaction(Transaction transaction){
-        return this.repositoryTransaction.save(transaction);
-    }
-
-    public int saveTransaction(Transaction transaction){
-        int res=0;
-        Transaction transaction1= repositoryTransaction.save(transaction);
-        if(!transaction1.equals(null)){
-            res=1;
+    public boolean saveOrUpdateTransaction(Transaction transaction){
+        Transaction transactionTemp = transactionRepository.save(transaction);
+        if(transactionRepository.findById(transactionTemp.getId())!=null){
+            return true;
         }
-        return res;
+        return false;
     }
 
-
-    public Transaction getTransactionById(Long id) {
-        Optional<Transaction> optional = repositoryTransaction.findById(id);
-        Transaction transaction = null;
-        if (optional.isPresent()) {
-            transaction = optional.get();
-        } else {
-            throw new RuntimeException(" Transaction not found for id :: " + id);
+    public boolean deleteTransaction(Long id){
+        transactionRepository.deleteById(id);
+        if(this.transactionRepository.findById(id).isPresent()){
+            return false;
         }
-        return transaction;
+        return true;
     }
 
-    public void deleteTransaction(Long id){
-        repositoryTransaction.deleteById(id);
-    }
-
-    public void  actulizarTransaction(Transaction Transaction){
-        repositoryTransaction.save(Transaction);
-    }
 
 
 }

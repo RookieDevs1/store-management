@@ -3,11 +3,14 @@ package com.project.storemanagement.Controllers;
 
 import com.project.storemanagement.Entities.Enterprise;
 import com.project.storemanagement.Services.EnterpriseService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import java.util.List;
 
 
@@ -16,48 +19,62 @@ import java.util.List;
 @RequestMapping
 public class EnterpriseController {
 
-    EnterpriseService serviceEnterprise;
-
-    public EnterpriseController(EnterpriseService serviceEnterprise){
-        this.serviceEnterprise = serviceEnterprise;
-    }
-
-
+    @Autowired
+    EnterpriseService enterpriseService;
 
     @GetMapping("/enterprise")
-    public String enterpriseList(Model model){
-        List<Enterprise> enterprise = serviceEnterprise.getEnterpriseList();
-        model.addAttribute("enterprise", enterprise);
+    public String viewEnterprise(Model model, @ModelAttribute("message") String message) {
+        List<Enterprise> enterpriseList = enterpriseService.getAllEnterprise();
+        model.addAttribute("enterprise", enterpriseList);
+        model.addAttribute("message", message);
         return "enterprise";
     }
 
-
     @GetMapping("/newEnterprise")
-    public  String addEnterprise(Model model){
-        model.addAttribute("enterprise", new Enterprise());
+    public String newEnterprise(Model model, @ModelAttribute("message") String message) {
+        Enterprise enterprise = new Enterprise();
+        model.addAttribute("enterprise", enterprise);
+        model.addAttribute("message", message);
         return "newEnterprise";
     }
 
     @PostMapping("/saveEnterprise")
-    public String saveEnterprise(@DateTimeFormat(pattern = "YYY-MM-DD") @ModelAttribute("enterprise") Enterprise enterprise) {
-        serviceEnterprise.saveEnterprise(enterprise);
-        return "redirect:/enterprise";
+    public String saveEnterprise(Enterprise enterprise, RedirectAttributes redirectAttributes) {
+        if (enterpriseService.saveOrUpdateEnterprise(enterprise)) {
+            redirectAttributes.addFlashAttribute("message", "saveOK");
+            return "redirect:/enterprise";
+        }
+        redirectAttributes.addFlashAttribute("message", "saveERROR");
+        return "redirect:/newEnterprise";
     }
 
-
     @GetMapping("/updateEnterprise/{id}")
-    public String updateEnterprise(@PathVariable ( value = "id") Long id, Model model) {
-        Enterprise enterprise = serviceEnterprise.getEnterpriseById(id);
+    public String editEnterprise(Model model, @PathVariable Long id, @ModelAttribute("message") String message) {
+        Enterprise enterprise = enterpriseService.getEnterpriseById(id);
         model.addAttribute("enterprise", enterprise);
+        model.addAttribute("message", message);
         return "updateEnterprise";
     }
 
-
-    @GetMapping("/deleteEnterprise/{id}")
-    public String deleteEnterprise(Model model, @PathVariable (value = "id") Long id) {
-        serviceEnterprise.deleteEnterprise(id);
-        return "redirect:/enterprise";
+    @PostMapping("/updateEnterprise")
+    public String updateEnterprise(Enterprise enterprise, RedirectAttributes redirectAttributes) {
+        if (enterpriseService.saveOrUpdateEnterprise(enterprise)) {
+            redirectAttributes.addFlashAttribute("message", "updateOK");
+            return "redirect:/enterprise";
+        }
+        redirectAttributes.addFlashAttribute("message", "updateERROR");
+        return "redirect:/updateEnterprise";
     }
 
+    @GetMapping("/deleteEnterprise/{id}")
+    public String deleteEnterprise(@PathVariable Long id, RedirectAttributes redirectAttributes) {
+        if (enterpriseService.deleteEnterprise(id)) {
+            redirectAttributes.addFlashAttribute("message", "deleteERROR");
+            return "redirect:/enterprise";
+
+        }
+        redirectAttributes.addFlashAttribute("message", "deleteOK");
+        return "redirect:/enterprise";
+    }
 
 }

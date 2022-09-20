@@ -1,22 +1,22 @@
 package com.project.storemanagement.Entities;
 
 
-import com.fasterxml.jackson.annotation.*;
 import com.project.storemanagement.Enum.Enum_RoleName;
+import lombok.ToString;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
 
 
 @Entity
+@ToString
 @Table(name = "employee")
-@JsonIgnoreProperties({"hibernateLazyInitializer","hanler"})
 public class Employee {
     // Declarar Variables
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", unique = true)
     private Long id;
 
@@ -27,49 +27,38 @@ public class Employee {
     @Column(name = "email", unique = true, length = 60)
     private String email;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "profile_id", unique = true )
-    private Profile profile;
+
 
     @Enumerated(EnumType.STRING)
     @Column(name = "role")
     private Enum_RoleName role;
 
-   @JsonIgnore
-   @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+   @ManyToOne
    @JoinColumn(name = "enterprise_id")
- //  @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-  // @JsonIdentityReference(alwaysAsId = true)
    private Enterprise enterprise;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Transaction> transactions;
+   @Transient
+    Transaction transaction;
 
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     @Column(name = "createdAt")
     private Date createdAt;
 
-    @Column(name = "updatedAt")
-    private Date updatedAt;
-
-
-    //Constructor vacio
     public Employee() {
     }
+
+
   //constuctor
 
 
-    public Employee(Long id, String name, String email, Profile profile, Enum_RoleName role, Enterprise enterprise, List<Transaction> transactions, Date createdAt, Date updatedAt ) {
+    public Employee(Long id, String name, String email, Enum_RoleName role, Enterprise enterprise, Transaction transaction, Date createdAt) {
         this.id = id;
         this.name = name;
         this.email = email;
-        this.profile = profile;
         this.role = role;
         this.enterprise = enterprise;
-        this.transactions = transactions;
+        this.transaction = transaction;
         this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
-
     }
 
     public Long getId() {
@@ -96,14 +85,6 @@ public class Employee {
         this.email = email;
     }
 
-    public Profile getProfile() {
-        return profile;
-    }
-
-    public void setProfile(Profile profile) {
-        this.profile = profile;
-    }
-
     public Enum_RoleName getRole() {
         return role;
     }
@@ -120,21 +101,14 @@ public class Employee {
         this.enterprise = enterprise;
     }
 
-    public List<Transaction> getTransactions() {
-        return transactions;
+    public Transaction getTransaction() {
+        return transaction;
     }
 
-    public void setTransactions(List<Transaction> transactions) {
-        this.transactions = transactions;
+    public void setTransaction(Transaction transaction) {
+        this.transaction = transaction;
     }
 
-    public Date getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(Date updatedAt) {
-        this.updatedAt = updatedAt;
-    }
 
     public Date getCreatedAt() {
         return createdAt;
@@ -143,6 +117,4 @@ public class Employee {
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
     }
-
-
 }

@@ -1,7 +1,8 @@
 package com.project.storemanagement.Entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.*;
+import lombok.ToString;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Entity;
 import javax.persistence.*;
@@ -10,12 +11,12 @@ import javax.persistence.Table;
 import java.util.Date;
 
 @Entity
+@ToString
 @Table(name = "transaction")
-@JsonIgnoreProperties({"hibernateLazyInitializer","hanler"})
 public class Transaction {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false, unique = true)
     private Long id;
 
@@ -25,19 +26,20 @@ public class Transaction {
     @Column(name = "amount", nullable = false)
     private float amount;
 
-    @JsonIgnore
-    @ManyToOne//(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "employee_id")
     private Employee employee;
 
-    @JsonIgnore
-    @ManyToOne //s(cascade = CascadeType.ALL)
+
+    @ManyToOne
     @JoinColumn(name = "enterprise_id")
     private Enterprise enterprise;
 
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     @Column(name = "updatedAt")
     private Date updatedAt;
 
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     @Column(name = "createdAt")
     private Date createdAt;
 
