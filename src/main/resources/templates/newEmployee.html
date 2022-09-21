@@ -9,7 +9,6 @@
     <meta content="" name="description">
     <meta content="" name="keywords">
     <!-- Favicons -->
-    <link href="/img/favicon.png" rel="icon">
     <link href="/img/apple-touch-icon.png" rel="apple-touch-icon">
 
     <!-- Google Fonts -->
@@ -19,11 +18,7 @@
     <!-- Vendor CSS Files -->
     <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-    <link href="/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-    <link href="/vendor/quill/quill.snow.css" rel="stylesheet">
-    <link href="/vendor/quill/quill.bubble.css" rel="stylesheet">
-    <link href="/vendor/remixicon/remixicon.css" rel="stylesheet">
-    <link href="/vendor/simple-datatables/style.css" rel="stylesheet">
+
 
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
@@ -38,9 +33,9 @@
 <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
-        <a href="index.html" class="logo d-flex align-items-center">
+        <a th:href="@{/inicio}" class="logo d-flex align-items-center">
             <img src="/img/logo.png" alt="">
-            <span class="d-none d-lg-block">NiceAdmin</span>
+            <span class="d-none d-lg-block">StoreManagement</span>
         </a>
         <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
@@ -53,91 +48,15 @@
     </div><!-- End Search Bar -->
 
     <nav class="header-nav ms-auto">
-        <ul class="d-flex align-items-center">
-
-            <li class="nav-item d-block d-lg-none">
-                <a class="nav-link nav-icon search-bar-toggle " href="#">
-                    <i class="bi bi-search"></i>
-                </a>
-            </li><!-- End Search Icon-->
 
 
+        <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+            <img src="/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+            <span class="d-none d-md-block dropdown-toggle ps-3">K. Anderson </span>
+        </a>
+    </nav>
 
-            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
-                <li class="dropdown-header">
-                    You have 4 new notifications
-                    <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
-                </li>
-                <li>
-                    <hr class="dropdown-divider">
-                </li>
-
-
-
-            </ul><!-- End Messages Dropdown Items -->
-
-            </li><!-- End Messages Nav -->
-
-            <li class="nav-item dropdown pe-3">
-
-                <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                    <img src="/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-                    <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
-                </a><!-- End Profile Iamge Icon -->
-
-                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
-                    <li class="dropdown-header">
-                        <h6>Kevin Anderson</h6>
-                        <span>Web Designer</span>
-                    </li>
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
-
-                    <li>
-                        <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
-                            <i class="bi bi-person"></i>
-                            <span>My Profile</span>
-                        </a>
-                    </li>
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
-
-                    <li>
-                        <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
-                            <i class="bi bi-gear"></i>
-                            <span>Account Settings</span>
-                        </a>
-                    </li>
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
-
-                    <li>
-                        <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
-                            <i class="bi bi-question-circle"></i>
-                            <span>Need Help?</span>
-                        </a>
-                    </li>
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
-
-                    <li>
-                        <a class="dropdown-item d-flex align-items-center" href="#">
-                            <i class="bi bi-box-arrow-right"></i>
-                            <span>Sign Out</span>
-                        </a>
-                    </li>
-
-                </ul><!-- End Profile Dropdown Items -->
-            </li><!-- End Profile Nav -->
-
-        </ul>
-    </nav><!-- End Icons Navigation -->
-
-</header><!-- End Header -->
+</header>
 
 <!-- ======= Sidebar ======= -->
 <aside id="sidebar" class="sidebar">
@@ -149,49 +68,33 @@
                 <i class="bi bi-grid"></i>
                 <span>Inicio</span>
             </a>
-        </li><!-- End Inicio Nav -->
-
-
+        </li>
 
         <li class="nav-item">
             <a class="nav-link collapsed" th:href="@{/employee}">
                 <i class="bi bi-person"></i>
-                <span>Empleado</span>
+                <span>Empleados</span>
             </a>
-        </li><!-- End Profile Page Nav -->
-
-
+        </li>
 
         <li class="nav-item">
             <a class="nav-link collapsed" th:href="@{/enterprise}">
                 <i class="bi bi-building"></i>
-                <span>Empresa</span>
+                <span>Empresas</span>
             </a>
-        </li><!-- End Contact Page Nav -->
+        </li>
 
         <li class="nav-item">
             <a class="nav-link collapsed" th:href="@{/transaction}">
                 <i class="bi bi-card-list"></i>
                 <span>Movimientos</span>
             </a>
-        </li><!-- End Register Page Nav -->
-
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="pages-login.html">
-                <i class="bi bi-box-arrow-in-right"></i>
-                <span>Login</span>
-            </a>
-        </li><!-- End Login Page Nav -->
-
-
+        </li>
     </ul>
 
-</aside><!-- End Sidebar-->
+</aside>
 
 <main id="main" class="main">
-
-
-
     <div class="container mt-4">
         <div class="col-sm-6">
             <form th:action="@{/saveEmployee}" th:object="${employee}" method="POST">
@@ -201,12 +104,12 @@
                     </div>
                     <div class="card-body">
                         <div class="form-group">
-                            <label>Nombre del Empleado</label>
+                            <label>Nombre del Empleado:</label>
                             <input th:field="*{name}" type="text" class="form-control"/>
                         </div>
 
                         <div class="form-group">
-                            <label>Correo del Empleado</label>
+                            <label>Correo del Empleado:</label>
                             <input th:field="*{email}" type="text" class="form-control"/>
                         </div>
 
@@ -214,13 +117,13 @@
                             <label>ROl</label>
                          <div class="col-md-6">
                             <select th:field="*{role}" class="form-control" id="role" required="required">
-                                <option th:value="admin">Administrator</option>
+                                <option th:value="admin">Administrador</option>
                                 <option th:value="operario">Operario</option>
                             </select>
                           </div>
                          </div>
                         <div class="form-group">
-                            <label class="col-md-3" for="enterprise">Enterprise:</label>
+                            <label class="col-md-3" for="enterprise">Empresa:</label>
                             <div class="col-md-6">
                                 <select th:field="*{enterprise}" class="form-control" id="enterprise" required="required">
                                     <option th:each="enterprise : ${enterprise}" th:text="${enterprise.name}"
@@ -237,7 +140,8 @@
                     </div>
                     <div class="form-group" style="text-align:center">
                         <input type="submit" style="background-color: #21618C ;" class="btn btn-success" value="Guardar" />
-                        &nbsp;<a class="btn btn-outline-danger"  th:href="@{/employee}">Cancelar</a>
+                        &nbsp;&nbsp;<a class="btn btn-outline-danger"  th:href="@{/employee}">Cancelar</a>
+                        <br>
                     </div>
                   <br>
                 </div>
@@ -246,18 +150,7 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 
-
-
-
-
-
-
-
-    <!-- puede ir una imagen -->
-
-
-
-</main><!-- End #main -->
+</main>
 
 
 <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
@@ -265,16 +158,37 @@
 <!-- Vendor JS Files -->
 <script src="/vendor/apexcharts/apexcharts.min.js"></script>
 <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="/vendor/chart.js/chart.min.js"></script>
-<script src="/vendor/echarts/echarts.min.js"></script>
-<script src="/vendor/quill/quill.min.js"></script>
-<script src="/vendor/simple-datatables/simple-datatables.js"></script>
-<script src="/vendor/tinymce/tinymce.min.js"></script>
-<script src="/vendor/php-email-form/validate.js"></script>
 
 <!-- Template Main JS File -->
 <script src="/js/main.js"></script>
 
+
+<script th:inline="javascript">
+    window.onload=function(){
+
+        var msg= [[${message}]];
+        if (msg == "saveOK"){
+            Command : toastr["success"]("Employee created")
+            }
+        else if (msg == "updateOK"){
+            Command : toastr["success"]("Employee edited")
+        }
+        else if (msg == "deleteOK"){
+            Command : toastr["error"]("Employee deleted")
+        }
+        else if (msg == "deleteERROR"){
+            Command : toastr["error"]("Error deleted ")
+        }
+        toastr.options={
+            "positionClass": "toast-top-right",
+            "showDuration":"300",
+            "showMethod":"fadeIn",
+            "hideMethod":"fadeOut",
+        }
+
+
+    }
+</script>
 </body>
 
 </html>

@@ -10,12 +10,14 @@ import javax.persistence.Table;
 import java.util.Date;
 @Entity
 @Table(name = "profile")
-@JsonIgnoreProperties({"hibernateLazyInitializer","hanler"})
 public class Profile {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false, unique = true)
     private Long id;
+
+    @Column(name = "email",  unique = true)
+    private String email;
 
     @Column(name = "image")
     private String image;
@@ -23,13 +25,13 @@ public class Profile {
     @Column(name = "phone", length = 15)
     private String phone;
 
-    @JsonIgnore
+    @Column(name = "authoId" ,  unique = true)
+    private String authoId;
+
+
    @JoinColumn(name = "employee_id")
    @OneToOne(fetch = FetchType.LAZY)
     private Employee employee;
-
-    @Column(name = "updatedAt")
-    private Date updatedAt;
 
     @Column(name = "createdAt")
     private Date createdAt;
@@ -37,12 +39,13 @@ public class Profile {
     public Profile() {
     }
 
-    public Profile(Long id, String image, String phone, Employee employee, Date updatedAt, Date createdAt) {
+    public Profile(Long id, String email, String image, String phone, String authoId, Employee employee, Date createdAt) {
         this.id = id;
+        this.email = email;
         this.image = image;
         this.phone = phone;
+        this.authoId = authoId;
         this.employee = employee;
-        this.updatedAt = updatedAt;
         this.createdAt = createdAt;
     }
 
@@ -52,6 +55,14 @@ public class Profile {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getImage() {
@@ -70,20 +81,20 @@ public class Profile {
         this.phone = phone;
     }
 
+    public String getAuthoId() {
+        return authoId;
+    }
+
+    public void setAuthoId(String authoId) {
+        this.authoId = authoId;
+    }
+
     public Employee getEmployee() {
         return employee;
     }
 
     public void setEmployee(Employee employee) {
         this.employee = employee;
-    }
-
-    public Date getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(Date updatedAt) {
-        this.updatedAt = updatedAt;
     }
 
     public Date getCreatedAt() {

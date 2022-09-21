@@ -83,7 +83,7 @@ public class EmployeeController {
 
 
     @GetMapping("/deleteEmployee/{id}")
-    public String deleteEmployee(@PathVariable Long id, RedirectAttributes redirectAttributes) {
+    public String deleteEmployee(@PathVariable (value = "id") Long id, RedirectAttributes redirectAttributes) {
         if (employeeService.deleteEmployee(id)) {
             redirectAttributes.addFlashAttribute("message", "deleteERROR");
             return "redirect:/employee";
@@ -91,6 +91,7 @@ public class EmployeeController {
         redirectAttributes.addFlashAttribute("message", "deleteOK");
         return "redirect:/employee";
     }
+
 
     @GetMapping("/enterprise/{id}/employee")
     public String viewEmployeeByEnterprise(@PathVariable("id") Long id, Model model){
