@@ -18,6 +18,11 @@
   <!-- Vendor CSS Files -->
   <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <!-- Toastr Files -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
 
 
@@ -156,6 +161,41 @@
 <!-- Template Main JS File -->
 <script src="/js/main.js"></script>
 
+<script th:inline="javascript">
+    window.onload=function(){
+
+        var msg= [[${message}]];
+        if (msg == "saveOK"){
+            Command : toastr["success"]("Employee created")
+            }
+        else if (msg == "updateOK"){
+            Command : toastr["success"]("Employee edited")
+        }
+        else if (msg == "deleteOK"){
+            Command : toastr["error"]("Employee deleted")
+        }
+        else if (msg == "deleteERROR"){
+            Command : toastr["error"]("Error deleted ")
+        }
+       toastr.options = {
+             "closeButton": true,
+              "debug": false,
+              "newestOnTop": false,
+              "progressBar": false,
+              "positionClass": "toast-bottom-right",
+              "preventDuplicates": false,
+              "onclick": null,
+              "showDuration": "300",
+              "hideDuration": "1000",
+              "timeOut": "60000",
+              "extendedTimeOut": "60000",
+              "showEasing": "swing",
+              "hideEasing": "linear",
+              "showMethod": "fadeIn",
+              "hideMethod": "fadeOut"
+        }
+    }
+</script>
 </body>
 
 </html>

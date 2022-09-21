@@ -83,12 +83,13 @@ public String viewEmployee(Model model, @ModelAttribute("message") String messag
 
     @GetMapping("/deleteTransaction/{id}")
     public String deleteTransaction(@PathVariable Long id, RedirectAttributes redirectAttributes) {
-        if (transactionService.deleteTransaction(id)) {
+        try  {
+            transactionService.deleteTransaction(id);
             redirectAttributes.addFlashAttribute("message", "deleteOK");
             return "redirect:/transaction";
-        }
+        }catch (Exception e){
         redirectAttributes.addFlashAttribute("message", "deleteERROR");
-        return "redirect:/transaction";
+        return "redirect:/transaction";}
     }
 
 

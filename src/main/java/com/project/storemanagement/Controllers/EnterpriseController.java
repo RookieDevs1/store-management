@@ -68,13 +68,13 @@ public class EnterpriseController {
 
     @GetMapping("/deleteEnterprise/{id}")
     public String deleteEnterprise(@PathVariable Long id, RedirectAttributes redirectAttributes) {
-        if (enterpriseService.deleteEnterprise(id)) {
-            redirectAttributes.addFlashAttribute("message", "deleteERROR");
+        try  {
+            enterpriseService.deleteEnterprise(id);
+            redirectAttributes.addFlashAttribute("message", "deleteOK");
             return "redirect:/enterprise";
-
-        }
-        redirectAttributes.addFlashAttribute("message", "deleteOK");
-        return "redirect:/enterprise";
+        }catch (Exception e){
+        redirectAttributes.addFlashAttribute("message", "deleteERROR");
+        return "redirect:/enterprise";}
     }
 
 }
