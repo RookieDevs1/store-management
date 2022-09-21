@@ -43,6 +43,7 @@ public class Transaction {
     @Column(name = "createdAt")
     private Date createdAt;
 
+
     public Transaction() {
     }
 

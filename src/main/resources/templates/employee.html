@@ -123,6 +123,7 @@
                 <th style="text-align:center">Role</th>
                 <th style="text-align:center">Empresa</th>
                 <th style="text-align:center">Fecha Creación</th>
+                <th style="text-align:center">Fecha Actualizacion</th>
                 <th style="text-align:center">Transacciones</th>
                 <th style="text-align:center">Acción</th>
 
@@ -136,7 +137,8 @@
                 <td th:text="${Employee.role}"></td>
                 <td th:text="${Employee.enterprise.name}"></td>
                 <td th:text="${#dates.format(Employee.createdAt, 'dd/MM/yyyy')}"></td>
-                <td><a th:href="@{/employee/{id}/transaction(id=${Employee.id})}" style="background-color: #21618C ;" class="btn btn-info">Ver</a></td>
+                <td th:text="${#dates.format(Employee.updatedAt, 'dd/MM/yyyy')}"></td>
+                <td><a th:href="@{/employee/{id}/transaction(id=${Employee.id})}" style="background-color: #21618C;" class="btn btn-info">Ver</a></td>
 
                 <td style="text-align:center">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"

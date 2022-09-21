@@ -40,9 +40,13 @@ public class Employee {
    @Transient
     Transaction transaction;
 
-    @DateTimeFormat(pattern="yyyy-MM-dd")
+    @Column(name = "updatedAt")
+    private Date updatedAt;
+
     @Column(name = "createdAt")
     private Date createdAt;
+
+
 
     public Employee() {
     }
@@ -51,14 +55,23 @@ public class Employee {
   //constuctor
 
 
-    public Employee(Long id, String name, String email, Enum_RoleName role, Enterprise enterprise, Transaction transaction, Date createdAt) {
+    public Employee(Long id, String name, String email, Enum_RoleName role, Enterprise enterprise, Transaction transaction, Date updatedAt, Date createdAt) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.role = role;
         this.enterprise = enterprise;
         this.transaction = transaction;
+        this.updatedAt = updatedAt;
         this.createdAt = createdAt;
+    }
+
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
     }
 
     public Long getId() {

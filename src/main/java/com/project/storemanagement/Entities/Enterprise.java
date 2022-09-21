@@ -30,10 +30,10 @@ public class Enterprise {
     private String direction;
 
 
-    @Column(name = "createdAt")
+    @Column(name = "updatedAt")
     private Date updatedAt;
 
-    @Column(name = "updatedAt")
+    @Column(name = "createdAt")
     private Date createdAt;
 
 

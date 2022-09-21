@@ -119,6 +119,8 @@
         <th style="text-align:center">Nombre </th>
         <th style="text-align:center">Dirección </th>
         <th style="text-align:center">Teléfono</th>
+        <th style="text-align:center">Fecha Creación</th>
+        <th style="text-align:center">Fecha Actualizacion</th>
         <th style="text-align:center">Empleados</th>
         <th style="text-align:center">Transacciones</th>
         <th style="text-align:center">Acción</th>
@@ -131,6 +133,8 @@
         <td th:text="${Enterprise.name}"></td>
         <td th:text="${Enterprise.direction}"></td>
         <td th:text="${Enterprise.phone}"></td>
+        <td th:text="${#dates.format(Enterprise.createdAt, 'dd/MM/yyyy')}"></td>
+        <td th:text="${#dates.format(Enterprise.updatedAt, 'dd/MM/yyyy')}"></td>
         <td style="text-align:center">
           <a th:href="@{/enterprise/{id}/employee (id=${Enterprise.id})}" style="background-color: #21618C ;"  class="btn btn-info">Ver</a></td>
         <td style="text-align:center">
