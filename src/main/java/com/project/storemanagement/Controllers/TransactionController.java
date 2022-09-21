@@ -91,7 +91,12 @@ public String viewEmployee(Model model, @ModelAttribute("message") String messag
         redirectAttributes.addFlashAttribute("message", "deleteERROR");
         return "redirect:/transaction";}
     }
-
+    @GetMapping("/employee/{id}/transaction")
+    public String transactionsByEmployee(@PathVariable Long id, Model model){
+        List<Transaction> transactionList = transactionService.findByEmployee(id);
+        model.addAttribute("transaction",transactionList);
+        return "transaction";
+    }
 
 
 

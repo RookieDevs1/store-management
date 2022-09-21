@@ -46,6 +46,9 @@ public class TransactionService {
         }
         return true;
     }
+    public ArrayList<Transaction> findByEmployee(Long id) {
+        return transactionRepository.findByEmployee(id);
+    }
 
 
 
