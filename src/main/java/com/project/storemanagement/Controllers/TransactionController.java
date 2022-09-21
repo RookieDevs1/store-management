@@ -33,6 +33,9 @@ public class TransactionController {
 @GetMapping("/transaction")
 public String viewEmployee(Model model, @ModelAttribute("message") String message) {
     List<Transaction> transactionList = transactionService.getAllTransaction();
+    Long sumAmount = transactionService.sumAmount();
+
+    model.addAttribute("sumAmount",sumAmount);
     model.addAttribute("transaction", transactionList);
     model.addAttribute("message", message);
     return "transaction";
@@ -94,10 +97,22 @@ public String viewEmployee(Model model, @ModelAttribute("message") String messag
     @GetMapping("/employee/{id}/transaction")
     public String transactionsByEmployee(@PathVariable Long id, Model model){
         List<Transaction> transactionList = transactionService.findByEmployee(id);
+        Long sumAmount = transactionService.sumAmountByEmployee(id);
+
+        model.addAttribute("sumAmount",sumAmount);
         model.addAttribute("transaction",transactionList);
         return "transaction";
     }
 
+    @GetMapping("/enterprise/{id}/transaction")
+    public String transactionsByEnterprise(@PathVariable Long id, Model model){
+        List<Transaction> transactionList = transactionService.findByEnterprise(id);
+        Long sumAmount = transactionService.sumAmountByEnterprise(id);
+
+        model.addAttribute("sumAmount",sumAmount);
+        model.addAttribute("transaction",transactionList);
+        return "transaction";
+    }
 
 
 

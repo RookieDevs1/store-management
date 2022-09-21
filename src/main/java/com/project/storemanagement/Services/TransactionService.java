@@ -49,6 +49,21 @@ public class TransactionService {
     public ArrayList<Transaction> findByEmployee(Long id) {
         return transactionRepository.findByEmployee(id);
     }
+    public ArrayList<Transaction> findByEnterprise(Long id) {
+        return transactionRepository.findByEnterprise(id);
+    }
+
+    public Long sumAmount(){
+        return transactionRepository.sumAmount();
+    }
+
+    public Long sumAmountByEmployee(Long id){
+        return transactionRepository.sumAmountByEmployee(id);
+    }
+
+    public Long sumAmountByEnterprise(Long id){
+        return transactionRepository.sumAmountByEnterprise(id);
+    }
 
 
 
