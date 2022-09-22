@@ -30,16 +30,16 @@ public class TransactionController {
 
 
 
-@GetMapping("/transaction")
-public String viewEmployee(Model model, @ModelAttribute("message") String message) {
-    List<Transaction> transactionList = transactionService.getAllTransaction();
-    Long sumAmount = transactionService.sumAmount();
+    @GetMapping("/transaction")
+    public String viewEmployee(Model model, @ModelAttribute("message") String message) {
+        List<Transaction> transactionList = transactionService.getAllTransaction();
+        Long sumAmount = transactionService.sumAmount();
 
-    model.addAttribute("sumAmount",sumAmount);
-    model.addAttribute("transaction", transactionList);
-    model.addAttribute("message", message);
-    return "transaction";
-}
+        model.addAttribute("sumAmount",sumAmount);
+        model.addAttribute("transaction", transactionList);
+        model.addAttribute("message", message);
+        return "transaction";
+    }
 
 
     @GetMapping("/newTransaction")
@@ -91,8 +91,8 @@ public String viewEmployee(Model model, @ModelAttribute("message") String messag
             redirectAttributes.addFlashAttribute("message", "deleteOK");
             return "redirect:/transaction";
         }catch (Exception e){
-        redirectAttributes.addFlashAttribute("message", "deleteERROR");
-        return "redirect:/transaction";}
+            redirectAttributes.addFlashAttribute("message", "deleteERROR");
+            return "redirect:/transaction";}
     }
     @GetMapping("/employee/{id}/transaction")
     public String transactionsByEmployee(@PathVariable Long id, Model model){

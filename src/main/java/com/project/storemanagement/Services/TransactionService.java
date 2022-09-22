@@ -16,7 +16,6 @@ import java.util.Optional;
 public class TransactionService {
 
 
-
     @Autowired
     TransactionRepository transactionRepository;
 
@@ -64,7 +63,5 @@ public class TransactionService {
     public Long sumAmountByEnterprise(Long id){
         return transactionRepository.sumAmountByEnterprise(id);
     }
-
-
 
 }

@@ -84,14 +84,12 @@ public class EmployeeController {
 
     @GetMapping("/deleteEmployee/{id}")
     public String deleteEmployee(@PathVariable (value = "id") Long id, RedirectAttributes redirectAttributes) {
-        try  {
-            employeeService.deleteEmployee(id);
-            redirectAttributes.addFlashAttribute("message", "deleteOK");
+        if (employeeService.deleteEmployee(id)) {
+            redirectAttributes.addFlashAttribute("message", "deleteERROR");
             return "redirect:/employee";
-        }catch (Exception e){
-        redirectAttributes.addFlashAttribute("message", "deleteERROR");
-        return "redirect:/employee";}
-
+        }
+        redirectAttributes.addFlashAttribute("message", "deleteOK");
+        return "redirect:/employee";
     }
 
 

@@ -21,6 +21,7 @@
             <a th:href="@{/oauth2/authorization/auth0}"style="background-color: #21618C ;" class="btn btn-primary btn-lg">Iniciar Sesión</a>
         </div>
         <div sec:authorize="isAuthenticated()">
+            <h3 th:text="'Bienvenido(a), '+ ${profile.getEmail()}"></h3>
             <a th:href="@{/inicio}" style="background-color: #21618C ;" class="btn btn-primary btn-lg">Ingresar</a>
         </div>
     </div>
