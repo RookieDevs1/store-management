@@ -2,12 +2,11 @@ package com.project.storemanagement.Controllers;
 
 import com.project.storemanagement.Entities.Employee;
 import com.project.storemanagement.Entities.Enterprise;
+import com.project.storemanagement.Entities.Profile;
 import com.project.storemanagement.Services.EmployeeService;
 import com.project.storemanagement.Services.EnterpriseService;
+import com.project.storemanagement.Services.ProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.oauth2.core.oidc.user.OidcUser;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
@@ -26,7 +25,8 @@ public class EmployeeController {
     EmployeeService employeeService;
     @Autowired
     EnterpriseService enterpriseService;
-
+    @Autowired
+    ProfileService profileService;
 
     @GetMapping("/employee")
     public String viewEmployee(Model model, @ModelAttribute("message") String message) {
@@ -40,7 +40,8 @@ public class EmployeeController {
     public String newEmployee(Model model, @ModelAttribute("message") String message) {
         Employee employee = new Employee();
         List<Enterprise> enterpriseList = enterpriseService.getAllEnterprise();
-
+        List<Profile> profileList = profileService.getAllProfile();
+        model.addAttribute("profile", profileList);
         model.addAttribute("employee", employee);
         model.addAttribute("enterprise", enterpriseList);
         model.addAttribute("message", message);

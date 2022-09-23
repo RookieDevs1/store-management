@@ -1,6 +1,5 @@
 package com.project.storemanagement.Entities;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 
 import javax.persistence.*;
 import javax.persistence.Entity;
@@ -25,6 +24,12 @@ public class Profile {
     private String image;
 
 
+    @Column(nullable = false, length = 64)
+    private String password;
+
+    @Column(name = "status")
+    private boolean status;
+
     @Column(name = "authoId" ,  unique = true)
     private String authoId;
 
@@ -35,6 +40,12 @@ public class Profile {
 
 
     public Profile() {
+    }
+
+    public Profile(Long id, String password, boolean status) {
+        this.id = id;
+        this.password = password;
+        this.status = status;
     }
 
     public Profile(String name, String email, String image, String authoId) {
@@ -91,5 +102,21 @@ public class Profile {
 
     public void setEmployee(Employee employee) {
         this.employee = employee;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 }
