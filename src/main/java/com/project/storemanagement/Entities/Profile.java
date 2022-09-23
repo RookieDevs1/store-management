@@ -24,11 +24,13 @@ public class Profile {
     private String image;
 
 
-    @Column(nullable = false, length = 64)
+  /*  @Column(nullable = false, length = 64)
     private String password;
 
     @Column(name = "status")
     private boolean status;
+
+   */
 
     @Column(name = "authoId" ,  unique = true)
     private String authoId;
@@ -44,8 +46,8 @@ public class Profile {
 
     public Profile(Long id, String password, boolean status) {
         this.id = id;
-        this.password = password;
-        this.status = status;
+       // this.password = password;
+     //   this.status = status;
     }
 
     public Profile(String name, String email, String image, String authoId) {
@@ -104,7 +106,7 @@ public class Profile {
         this.employee = employee;
     }
 
-    public String getPassword() {
+  /*  public String getPassword() {
         return password;
     }
 
@@ -119,4 +121,6 @@ public class Profile {
     public void setStatus(boolean status) {
         this.status = status;
     }
+
+   */
 }
