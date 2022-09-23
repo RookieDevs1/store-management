@@ -1,6 +1,5 @@
 package com.project.storemanagement.Entities;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 
 import javax.persistence.*;
 import javax.persistence.Entity;
@@ -10,40 +9,51 @@ import javax.persistence.Table;
 import java.util.Date;
 @Entity
 @Table(name = "profile")
-@JsonIgnoreProperties({"hibernateLazyInitializer","hanler"})
 public class Profile {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false, unique = true)
     private Long id;
+
+    @Column(name = "name")
+    private String name;
+    @Column(name = "email",  unique = true)
+    private String email;
 
     @Column(name = "image")
     private String image;
 
-    @Column(name = "phone", length = 15)
-    private String phone;
 
-    @JsonIgnore
+    @Column(nullable = false, length = 64)
+    private String password;
+
+    @Column(name = "status")
+    private boolean status;
+
+    @Column(name = "authoId" ,  unique = true)
+    private String authoId;
+
+
+    @OneToOne
    @JoinColumn(name = "employee_id")
-   @OneToOne(fetch = FetchType.LAZY)
     private Employee employee;
 
-    @Column(name = "updatedAt")
-    private Date updatedAt;
-
-    @Column(name = "createdAt")
-    private Date createdAt;
 
     public Profile() {
     }
 
-    public Profile(Long id, String image, String phone, Employee employee, Date updatedAt, Date createdAt) {
+    public Profile(Long id, String password, boolean status) {
         this.id = id;
+        this.password = password;
+        this.status = status;
+    }
+
+    public Profile(String name, String email, String image, String authoId) {
+        this.name = name;
+        this.email = email;
         this.image = image;
-        this.phone = phone;
-        this.employee = employee;
-        this.updatedAt = updatedAt;
-        this.createdAt = createdAt;
+        this.authoId = authoId;
+
     }
 
     public Long getId() {
@@ -54,6 +64,22 @@ public class Profile {
         this.id = id;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public String getImage() {
         return image;
     }
@@ -62,12 +88,12 @@ public class Profile {
         this.image = image;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getAuthoId() {
+        return authoId;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setAuthoId(String authoId) {
+        this.authoId = authoId;
     }
 
     public Employee getEmployee() {
@@ -78,19 +104,19 @@ public class Profile {
         this.employee = employee;
     }
 
-    public Date getUpdatedAt() {
-        return updatedAt;
+    public String getPassword() {
+        return password;
     }
 
-    public void setUpdatedAt(Date updatedAt) {
-        this.updatedAt = updatedAt;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public Date getCreatedAt() {
-        return createdAt;
+    public boolean isStatus() {
+        return status;
     }
 
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 }
