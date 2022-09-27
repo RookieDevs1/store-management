@@ -19,7 +19,6 @@ import java.util.logging.Logger;
 @Validated
 @Controller
 @RequestMapping
-
 public class frontController {
 
 
