@@ -38,11 +38,10 @@ public class frontController {
 
     @GetMapping("/")
     public String home( @AuthenticationPrincipal OidcUser principal , Model model) {
-
         if (principal != null) {
             Profile profile= this.profileService.getCreateProfile(principal.getClaims());
             model.addAttribute("profile",profile);
-   // System.out.println( principal.getClaims());
+   //System.out.println( principal.getClaims());
         }
         return "index";
     }
