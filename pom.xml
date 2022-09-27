@@ -13,8 +13,7 @@
 	<artifactId>store-management</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>store-management</name>
-	<description>StoreManagementApplication</description>
-
+	<description>project store-management</description>
 	<properties>
 		<java.version>18</java.version>
 	</properties>
