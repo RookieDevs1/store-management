@@ -15,7 +15,7 @@
 	<name>demo</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
-		<java.version>8</java.version>
+		<java.version>18</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -30,7 +30,7 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
-			<version>2.7.3</version>
+			<version>${parent.version}</version>
 		</dependency>
 
 		<dependency>
