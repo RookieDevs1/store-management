@@ -16,12 +16,15 @@ public class SecurityConfig {
      /*   http
                 .authorizeHttpRequests((authorize) -> authorize
                         .anyRequest().authenticated());
-*/
+
 
         http
                 .authorizeRequests()
                 .antMatchers("/", "/vendor/**", "/imag/**", "/css/**", "/js/**", "/favicon.ico").permitAll();
-
+*/
+        http
+                .authorizeRequests()
+                .antMatchers( "/favicon.ico").permitAll();
 
 
         return http.oauth2Login()
