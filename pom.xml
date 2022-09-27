@@ -12,7 +12,7 @@
 	<groupId>com.project.storemanagement</groupId>
 	<artifactId>StoreManagementApplication</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>StoreManagementApplication</name>
+	<name>store-management</name>
 	<description>StoreManagementApplication</description>
 	<properties>
 		<java.version>18</java.version>
