@@ -17,4 +17,4 @@ spring:
             issuer-uri: https://dev-2-m0enr7.us.auth0.com/
 
 server:
-  port: $PORT
+  port: "${PORT:8080}"
