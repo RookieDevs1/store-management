@@ -9,11 +9,11 @@
 		<version>2.7.3</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.store-management</groupId>
-	<artifactId>store-management</artifactId>
+	<groupId>com.project.storemanagement</groupId>
+	<artifactId>StoreManagementApplication</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>store-management</name>
-	<description>Demo project for Spring Boot</description>
+	<name>StoreManagementApplication</name>
+	<description>StoreManagementApplication</description>
 	<properties>
 		<java.version>18</java.version>
 	</properties>
