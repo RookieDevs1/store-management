@@ -1,14 +1,9 @@
 package com.project.storemanagement.Controllers;
 
-import com.project.storemanagement.Entities.Employee;
 import com.project.storemanagement.Entities.Profile;
 import com.project.storemanagement.Services.EmployeeService;
 import com.project.storemanagement.Services.ProfileService;
-import org.springframework.context.annotation.Bean;
-import org.springframework.data.repository.query.Param;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.core.oidc.user.OidcUser;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,9 +11,6 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.servlet.http.HttpServletRequest;
-import java.awt.color.ProfileDataException;
-import java.util.List;
 
 
 @Validated
