@@ -7,6 +7,7 @@ import com.project.storemanagement.Services.EmployeeService;
 import com.project.storemanagement.Services.EnterpriseService;
 import com.project.storemanagement.Services.ProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
@@ -30,7 +31,8 @@ public class EmployeeController {
 
     @GetMapping("/employee")
     public String viewEmployee(Model model, @ModelAttribute("message") String message) {
-        List<Employee> employeeList = employeeService.getAllEmployee();
+     List<Employee> employeeList = employeeService.getAllEmployee();
+
         model.addAttribute("employee", employeeList);
         model.addAttribute("message", message);
         return "employee";
@@ -100,6 +102,7 @@ public class EmployeeController {
         model.addAttribute("employee",employeeList);
         return "employee";
     }
+
 
 
 }

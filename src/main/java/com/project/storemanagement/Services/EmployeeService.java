@@ -1,12 +1,10 @@
 package com.project.storemanagement.Services;
 
 import com.project.storemanagement.Entities.Employee;
-import com.project.storemanagement.Entities.Enterprise;
 import com.project.storemanagement.Repositories.EmployeeRepository;
 import com.project.storemanagement.Repositories.TransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -23,6 +21,7 @@ public class EmployeeService {
     public List<Employee> getAllEmployee(){
         List<Employee> employeeList= new ArrayList<>();
         employeeRepository.findAll().forEach(employee -> employeeList.add(employee));
+
         return employeeList;
     }
 
@@ -52,7 +51,6 @@ public class EmployeeService {
         }
         return true;
     }
-
 
 
 

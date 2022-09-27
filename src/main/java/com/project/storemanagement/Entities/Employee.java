@@ -4,9 +4,16 @@ package com.project.storemanagement.Entities;
 import com.project.storemanagement.Enum.Enum_RoleName;
 import lombok.ToString;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Pattern;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 
 @Entity
@@ -25,6 +32,8 @@ public class Employee {
 
 
     @Column(name = "email", unique = true, length = 60)
+    @Email
+    @Pattern(regexp =".+@.+\\.[a-z]+", message = "\n" + "Debe ser un correo valido" )
     private String email;
 
 
@@ -41,9 +50,11 @@ public class Employee {
     Transaction transaction;
 
     @Column(name = "updatedAt")
+    @Temporal(TemporalType.DATE)
     private Date updatedAt;
 
     @Column(name = "createdAt")
+    @Temporal(TemporalType.DATE)
     private Date createdAt;
 
 
@@ -130,4 +141,9 @@ public class Employee {
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
     }
+
+
+
+
+
 }
