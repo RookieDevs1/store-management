@@ -37,6 +37,7 @@ public class frontController {
             Profile profile= this.profileService.getCreateProfile(principal.getClaims());
             model.addAttribute("profile",profile);
    //System.out.println( principal.getClaims());
+            //System.out.println("hola mmmm");
         }
         return "index";
     }
