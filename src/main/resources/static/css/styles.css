@@ -1,0 +1,15 @@
+.container{
+    background-color:#c0d7e7;
+    font-family:'Times New Roman','Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif, cursive;
+    text-align:center;
+
+    font-size: 100%;
+
+}
+
+.botones{
+    text-align:center;
+    display: block;
+    position: static;
+}
+
