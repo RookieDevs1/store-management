@@ -19,7 +19,7 @@ import java.util.logging.Logger;
 @Validated
 @Controller
 @RequestMapping
-@RestController
+
 public class frontController {
 
 
