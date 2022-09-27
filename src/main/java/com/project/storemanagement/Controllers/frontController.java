@@ -18,12 +18,11 @@ import java.util.logging.Logger;
 
 @Validated
 @Controller
-@RequestMapping
+@RequestMapping("/")
 public class frontController {
 
 
     EmployeeService employeeService;
-
     ProfileService profileService;
 
     public frontController(EmployeeService employeeService, ProfileService profileService){
@@ -31,13 +30,14 @@ public class frontController {
         this.profileService=profileService;
     }
 
-    @GetMapping("/")
+  //  @GetMapping("/")
+  @RequestMapping("/")
     public String home( @AuthenticationPrincipal OidcUser principal , Model model) {
         if (principal != null) {
             Profile profile= this.profileService.getCreateProfile(principal.getClaims());
             model.addAttribute("profile",profile);
    //System.out.println( principal.getClaims());
-            //System.out.println("hola mmmm");
+
         }
         return "index";
     }
