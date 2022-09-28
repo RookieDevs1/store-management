@@ -12,23 +12,12 @@ import static javax.xml.transform.OutputKeys.VERSION;
 public class SecurityConfig {
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity https) throws Exception {
-     /*   http
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+   http
                 .authorizeHttpRequests((authorize) -> authorize
                         .anyRequest().authenticated());
-*/
 
-        https
-                .authorizeRequests()
-                .antMatchers("/", "/vendor/**", "/imag/**", "/css/**", "/js/**", "/favicon.ico").permitAll();
-/*
-
-        http
-                .authorizeRequests()
-                .antMatchers( "/favicon.ico").permitAll();
-*/
-
-        return https.oauth2Login()
+        return http.oauth2Login()
                 .and().build();
     }
 }
