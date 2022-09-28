@@ -14,8 +14,8 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
    http
-                .authorizeHttpRequests((authorize) -> authorize
-                        .anyRequest().authenticated());
+                .authorizeRequests()
+                .antMatchers("/", "/vendor/**", "/imag/**", "/css/**", "/js/**", "/favicon.ico").permitAll();
 
         return http.oauth2Login()
                 .and().build();
