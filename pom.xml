@@ -9,11 +9,14 @@
 		<version>2.7.3</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.store-management</groupId>
-	<artifactId>store-management</artifactId>
+
+	<groupId>com.project.storemanagement</groupId>
+	<artifactId>StoreManagementApplication</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>store-management</name>
-	<description>Demo project for Spring Boot</description>
+	<description>StoreManagementApplication</description>
+
+
 	<properties>
 		<java.version>18</java.version>
 	</properties>
@@ -105,6 +108,7 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 
+
 				<executions>
 					<execution>
 						<goals>
@@ -121,14 +125,14 @@
 					</execution>
 				</executions>
 
+
+
+
 				<configuration>
 					<excludes>
 						<exclude>
 							<groupId>org.projectlombok</groupId>
 							<artifactId>lombok</artifactId>
-
-
-
 						</exclude>
 					</excludes>
 				</configuration>
