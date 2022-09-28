@@ -9,11 +9,13 @@
 		<version>2.7.3</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.example</groupId>
-	<artifactId>demo</artifactId>
+
+	<groupId>com.project.storemanagement</groupId>
+	<artifactId>StoreManagementApplication</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>demo</name>
-	<description>Demo project for Spring Boot</description>
+	<name>store-management</name>
+	<description>StoreManagementApplication</description>
+
 	<properties>
 		<java.version>18</java.version>
 	</properties>
@@ -36,7 +38,6 @@
 		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
-			<scope>42.5.0</scope>
 		</dependency>
 
 		<dependency>
@@ -105,6 +106,7 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 
+
 				<executions>
 					<execution>
 						<goals>
@@ -121,14 +123,14 @@
 					</execution>
 				</executions>
 
+
+
+
 				<configuration>
 					<excludes>
 						<exclude>
 							<groupId>org.projectlombok</groupId>
 							<artifactId>lombok</artifactId>
-
-
-
 						</exclude>
 					</excludes>
 				</configuration>
